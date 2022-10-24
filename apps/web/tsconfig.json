@@ -17,6 +17,13 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
+      "@assets/*": ["src/assets/*"],
+      "@constants/*": ["src/constants/*"],
+      "@core/*": ["src/core/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@feature/*": ["src/feature/*"],
+      "@store/*": ["src/store/*"],
+      "@utils/*": ["src/utils/*"],
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
       "@/*": ["src/*"]

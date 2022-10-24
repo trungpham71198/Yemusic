@@ -8,7 +8,7 @@ const routes: AppRoute[] = [
   {
     name: 'Home page',
     path: ROUTE.Home,
-    element: lazy(() => import('../pages/home')),
+    element: lazy(() => import('../pages/Home')),
   },
 ];
 

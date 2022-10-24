@@ -1,0 +1,21 @@
+.a-icon {
+  $icon-width: 24px;
+  $icon-height: 24px;
+
+  width: $icon-width;
+  height: $icon-height;
+  fill: currentcolor;
+  stroke: currentcolor;
+
+  &.-inherit {
+    color: inherit;
+  }
+
+  &.-secondary {
+    color: $SECONDARY-TEXT;
+  }
+
+  &.-primary {
+    color: $ACCENT-TEXT;
+  }
+}

@@ -1,0 +1,166 @@
+.o-search {
+  $root: &;
+  position: relative;
+  height: 100%;
+
+  .o-search_inner {
+    position: absolute;
+    top: pxtorem(8);
+    left: pxtorem(8);
+    width: 100%;
+    min-height: 42px;
+    max-width: 500px;
+    border-radius: pxtorem(8);
+
+    display: flex;
+    flex-direction: column;
+    gap: pxtorem(4);
+    padding: pxtorem(8);
+  }
+
+  &_body {
+    transition: all 0.4s linear;
+    overflow: hidden;
+    border-radius: 8px;
+    padding: 4px 0;
+    margin-left: -8px;
+    margin-top: -52px;
+    z-index: 9;
+    width: 496px;
+    visibility: hidden;
+    background-color: $MODAL-BACKGROUND;
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+
+    &.-open {
+      max-height: 480px;
+      height: 100%;
+      visibility: visible;
+    }
+  }
+
+  .a-input-group {
+    border-radius: 8px;
+    width: 480px;
+    min-height: 40px;
+    z-index: 99;
+  }
+
+  &_input {
+    &_icon {
+      display: inherit;
+    }
+  }
+
+  &_title {
+    padding: pxtorem(8);
+    margin-top: 48px;
+
+    p,
+    strong {
+      @include text(title);
+
+      margin: 0;
+    }
+
+    p {
+      overflow: hidden;
+      color: $SECONDARY-TEXT;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    strong {
+      color: $PRIMARY-TEXT;
+    }
+  }
+
+  &_list {
+    display: flex;
+    flex-direction: column;
+    gap: pxtorem(4);
+
+    #{$root}_item {
+      display: flex;
+      gap: pxtorem(8);
+      align-items: center;
+      padding: pxtorem(8);
+      border-radius: pxtorem(8);
+      margin-right: 0.5rem;
+      overflow: hidden;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $INTERACTIVE-BACKGROUND;
+      }
+
+      &_icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        min-width: 36px;
+        height: 36px;
+        background-color: rgb(98 89 89);
+        border-radius: pxtorem(4);
+
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+
+      &_thumbnail {
+        width: 64px;
+        min-width: 64px;
+        height: 36px;
+
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: pxtorem(4);
+        }
+      }
+
+      &_info {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        gap: pxtorem(4);
+        justify-content: space-between;
+
+        &_name {
+          display: inline-block;
+          min-width: 30%;
+          overflow: hidden;
+
+          h3 {
+            @include text(body);
+
+            margin: 0;
+            overflow: hidden;
+            color: $PRIMARY-TEXT;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+
+        &_author {
+          display: inline-block;
+          width: fit-content;
+          min-width: 20%;
+          overflow: hidden;
+
+          p {
+            @include text(caption);
+
+            margin: 0;
+            overflow: hidden;
+            color: $SECONDARY-TEXT;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+  }
+}

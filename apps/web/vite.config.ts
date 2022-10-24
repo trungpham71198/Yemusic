@@ -1,19 +1,13 @@
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
+import tsconfigPathsPlugin from 'vite-tsconfig-paths';
 
 const pathSrc = resolve(__dirname, './src').replace(/\\/g, '/');
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      '@components': resolve(__dirname, 'src/components'),
-      '@pages': resolve(__dirname, 'src/pages'),
-      '@': resolve(__dirname, 'src'),
-    },
-  },
+  plugins: [react(), tsconfigPathsPlugin()],
   css: {
     preprocessorOptions: {
       scss: {

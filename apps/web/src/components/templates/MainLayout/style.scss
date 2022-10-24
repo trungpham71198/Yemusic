@@ -1,0 +1,163 @@
+.t-main-layout {
+  $root: &;
+
+  position: relative;
+  display: flex;
+  height: 100vh;
+
+  &.-mobile {
+    position: absolute;
+    inset: 0;
+    flex-direction: column;
+
+    #{$root}_header {
+      height: 56px;
+      min-height: 56px;
+    }
+
+    #{$root}_main {
+      position: relative;
+      flex-grow: 1;
+    }
+
+    #{$root}_navigation {
+      height: 56px;
+      min-height: 56px;
+      background-color: $NAVIGATION-BACKGROUND;
+    }
+  }
+
+  &.-desktop {
+    #{$root}_sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: pxtorem(16);
+
+      &.-left {
+        width: 280px;
+        min-width: 280px;
+        border-right: 1px solid $DIVIDER;
+      }
+
+      &.-right {
+        display: flex;
+        flex-direction: column;
+        gap: pxtorem(16);
+        width: 100%;
+        min-width: 360px;
+        max-width: 360px;
+        height: 100%;
+        border-left: 1px solid $DIVIDER;
+
+        #{$root}_sidebar_header-settings {
+          height: 56px;
+          min-height: 56px;
+        }
+
+        #{$root}_sidebar_recent {
+          flex-grow: 1;
+        }
+      }
+
+      &_header {
+        height: 72px;
+        min-height: 72px;
+      }
+    }
+
+    #{$root}_main {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: pxtorem(16);
+      min-width: 50%;
+
+      &_header {
+        height: 72px;
+        min-height: 72px;
+      }
+    }
+  }
+}
+
+.c-app-default_header {
+  $root: &;
+
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  &.-mobile {
+    justify-content: space-between;
+    padding: pxtorem(8);
+
+    #{$root}_logo {
+      gap: pxtorem(8);
+    }
+  }
+
+  &.-desktop {
+    padding: pxtorem(16);
+
+    #{$root}_logo {
+      gap: pxtorem(16);
+    }
+  }
+
+  &_logo {
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 36px;
+      height: 40px;
+    }
+
+    h1 {
+      @include text(heading);
+
+      margin: 0;
+      color: $ACCENT-TEXT;
+    }
+  }
+
+  &_header_settings {
+    position: relative;
+  }
+}
+
+.c-app-default_player-controls {
+  &.-mobile {
+    background-color: $PLAYER-CONTROLS-BACKGROUND;
+
+    &.-full {
+      position: fixed;
+      inset: 0;
+      z-index: 99;
+      height: 100%;
+      padding: pxtorem(16);
+    }
+  }
+
+  &.-desktop {
+    padding: pxtorem(16);
+  }
+}
+
+.c-app-default_header_settings {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: pxtorem(16);
+
+  &_action {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.c-app-default-recent-list {
+  padding: pxtorem(8);
+}
