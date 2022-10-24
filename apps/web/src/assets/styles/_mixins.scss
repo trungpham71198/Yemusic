@@ -1,0 +1,66 @@
+/* @media
+--------------------------------------------------------- */
+@mixin pc-large() {
+  @media (min-width: $WIDTH-PC-LARGE) {
+    @content;
+  }
+}
+
+@mixin pc() {
+  @media (min-width: #{$WIDTH-XS + 1px}) {
+    @content;
+  }
+}
+
+@mixin tab() {
+  @media (min-width: #{$WIDTH-XS + 1px}) and (max-width: #{$WIDTH-PC - 1px}) {
+    @content;
+  }
+}
+
+@mixin sp() {
+  @media (max-width: $WIDTH-XS) {
+    @content;
+  }
+}
+
+/* There are three mixins apply for font-weight
+--------------------------------------------------------- */
+@mixin u-fw-thin {
+  font-weight: 100;
+}
+
+@mixin u-fw-extlight {
+  font-weight: 200;
+}
+
+@mixin u-fw-light {
+  font-weight: 300;
+}
+
+@mixin u-fw-regular {
+  font-weight: 400;
+}
+
+@mixin u-fw-medium {
+  font-weight: 500;
+}
+
+@mixin u-fw-semibold {
+  font-weight: 600;
+}
+
+@mixin u-fw-bold {
+  font-weight: 700;
+}
+
+/* make area that keep the aspect-ratio of area. This should be used with background-image
+--------------------------------------------------------- */
+@mixin aspectRatio($width: 1, $height: 1) {
+  position: relative;
+  &:before {
+    display: block;
+    padding-bottom: ($height / $width) * 100%;
+    content: '';
+  }
+}
