@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 enum Viewport {
   PHONE = 'mobile',
@@ -13,6 +13,7 @@ const getDeviceConfig = (width: number): Viewport => {
   }
 };
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const useViewport = () => {
   const [viewport, setViewport] = useState<Viewport>(Viewport.DESKTOP);
   const viewRef = useRef(Viewport.DESKTOP);

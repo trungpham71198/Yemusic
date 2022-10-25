@@ -1,18 +1,18 @@
-import React, {
+import './style.scss';
+
+import { mapClassNameModifiers } from '@helpers/style';
+import type { FC, ReactNode } from 'react';
+import type React from 'react';
+import {
   Children,
   cloneElement,
-  FC,
   isValidElement,
-  ReactNode,
   useCallback,
   useMemo,
   useRef,
 } from 'react';
 
-import abemClasses from '@utils/abemClasses';
-
 import { SongCard } from '.';
-import './style.scss';
 
 export interface SongCardListProps {
   isLoading: boolean;
@@ -114,7 +114,7 @@ export const SongCardList: FC<SongCardListProps> = ({
 
   return (
     <div
-      className={abemClasses('o-song-card-list', viewMode)}
+      className={mapClassNameModifiers('o-song-card-list', viewMode)}
       data-loading={isLoading}
     >
       {title && (

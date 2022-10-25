@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
-
-import { abemClasses } from '@utils/index';
-
 import './style.scss';
+
+import { mapClassNameModifiers } from '@helpers/style';
+import type { FC } from 'react';
+import type React from 'react';
 
 export interface IconProps extends React.SVGProps<SVGSVGElement> {
   color?: 'inherit' | 'secondary' | 'primary';
@@ -13,7 +13,7 @@ export const CircleIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -37,7 +37,7 @@ export const CircleActiveIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -54,7 +54,7 @@ export const HomeIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -75,7 +75,7 @@ export const HomeActiveIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -92,7 +92,7 @@ export const HeartIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -115,7 +115,7 @@ export const HeartActiveIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -132,7 +132,7 @@ export const PlayIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -149,7 +149,7 @@ export const PlayActiveIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -167,7 +167,7 @@ export const PauseIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -188,7 +188,7 @@ export const PauseActiveIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -209,7 +209,7 @@ export const SkipNextIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -230,7 +230,7 @@ export const SkipNextActiveIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -251,7 +251,7 @@ export const SkipPreviousIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -272,7 +272,7 @@ export const SkipPreviousActiveIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -293,7 +293,7 @@ export const SearchIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -314,7 +314,7 @@ export const CloseIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -336,7 +336,7 @@ export const VolumehightIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -357,7 +357,7 @@ export const VolumeLowIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -378,7 +378,7 @@ export const VolumeOffIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -398,7 +398,7 @@ export const VolumeSlashIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -419,7 +419,7 @@ export const RepeatIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -440,7 +440,7 @@ export const RepeatOneIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -461,7 +461,7 @@ export const ShuffleIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -483,7 +483,7 @@ export const ArrowLeftIcon: FC<IconProps> = ({
 }) => (
   <svg
     {...otherProps}
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -503,7 +503,7 @@ export const MoreIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -524,7 +524,7 @@ export const ArrowCircleLeftIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -545,7 +545,7 @@ export const ArrowCircleRightIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -566,7 +566,7 @@ export const UserIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -587,7 +587,7 @@ export const SettingIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'
@@ -649,7 +649,7 @@ export const DownloadIcon: FC<IconProps> = ({
   ...otherProps
 }) => (
   <svg
-    className={abemClasses('a-icon', color)}
+    className={mapClassNameModifiers('a-icon', color)}
     width='24'
     height='25'
     viewBox='0 0 24 25'

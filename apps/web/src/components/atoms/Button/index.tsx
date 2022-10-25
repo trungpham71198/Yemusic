@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { abemClasses } from '@utils/index';
+import { mapClassNameModifiers } from '@utils/index';
 
 import './style.scss';
 
@@ -30,7 +30,7 @@ export const Button: FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={abemClasses(
+      className={mapClassNameModifiers(
         'a-button',
         shape,
         fullWidth && 'full-width',

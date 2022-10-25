@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 
-import { abemClasses } from '@utils/index';
+import { mapClassNameModifiers } from '@utils/index';
 
 import './style.scss';
 
@@ -29,7 +29,7 @@ export const Input: FC<InputProps> = ({
 }) => {
   return (
     <div
-      className={abemClasses(
+      className={mapClassNameModifiers(
         'a-input-group',
         disabled && 'disabled',
         fullWidth && 'full-width',

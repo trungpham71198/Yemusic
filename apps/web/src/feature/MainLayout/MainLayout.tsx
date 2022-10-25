@@ -1,15 +1,15 @@
-import { FC, ReactNode, useEffect } from 'react';
-
-import { MainLayout as MainLayoutCommon } from '@common/components/templates/MainLayout';
 import {
   DesktopHeader,
   DesktopHeaderSettings,
   MobileHeader,
-} from '@common/components/organisms/Header';
-import Search from '@feature/Search';
-import { Navigation } from '@common/components/organisms/Navigation';
-import { useViewport } from '@hooks/useViewport';
+} from '@components/organisms/Header';
+import { Navigation } from '@components/organisms/Navigation';
+import { MainLayout as MainLayoutCommon } from '@components/templates/MainLayout';
 import { PlayerControls } from '@feature/PlayerControls';
+import Search from '@feature/Search';
+import { useViewport } from '@hooks/useViewport';
+import type { FC, ReactNode } from 'react';
+import { useEffect } from 'react';
 
 type TProps = {
   children: ReactNode;
@@ -20,7 +20,7 @@ export const MainLayout: FC<TProps> = ({ children }) => {
   const theme = 'light';
   const { viewport: device } = useViewport();
 
-  useEffect(() => {}, [theme]);
+  // useEffect(() => {}, [theme]);
 
   return (
     <MainLayoutCommon

@@ -1,6 +1,7 @@
-import React, { FC } from 'react';
-
 import './style.scss';
+
+import type { FC } from 'react';
+import type React from 'react';
 
 export interface MainLayoutProps {
   device: 'mobile' | 'desktop';

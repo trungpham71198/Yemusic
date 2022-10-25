@@ -1,12 +1,13 @@
-import { useEffect, useRef, FC, useState } from 'react';
-import { ISong } from '@core/domain/models/song';
-import { useDebounce } from '@hooks/useDebounce';
-import abemClasses from '@utils/abemClasses';
-
-import Input, { InputProps } from '@common/components/atoms/Input';
-import { ArrowLeftIcon, SearchIcon } from '@common/components/atoms/Icon';
-
 import './style.scss';
+
+import { ArrowLeftIcon, SearchIcon } from '@components/atoms/Icon';
+import type { InputProps } from '@components/atoms/Input';
+import Input from '@components/atoms/Input';
+import type { ISong } from '@core/domain/models/song';
+import { mapClassNameModifiers } from '@helper/style';
+import { useDebounce } from '@hooks/useDebounce';
+import type { FC } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export interface ISearch extends InputProps {
   onSearch: (value: string) => void;
@@ -83,7 +84,7 @@ const Search: FC<ISearch> = ({
           {...otherProps}
         />
         <div
-          className={abemClasses('o-search_body', isActive && 'open')}
+          className={mapClassNameModifiers('o-search_body', isActive && 'open')}
           style={{
             height:
               dataSource.length && isActive
@@ -105,7 +106,7 @@ const Search: FC<ISearch> = ({
           <div className='o-search_list' data-loading={isLoading}>
             {dataSource?.map(item => (
               <div
-                className={abemClasses('o-search_item')}
+                className={mapClassNameModifiers('o-search_item')}
                 role='button'
                 onClick={() => handleClickChoose(item)}
                 key={item.yId}

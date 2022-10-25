@@ -1,7 +1,8 @@
-import { Http } from '@core/domain/repositories/httpAxios';
+import type { Http } from '@core/domain/repositories/httpAxios';
+import type { SongRepository } from '@core/domain/repositories/songRepository';
+
 import { songRepository } from '../repositories/songRepository';
 import { httpAxios } from './httpAxios';
-import { SongRepository } from '@core/domain/repositories/songRepository';
 
 const client: Http = httpAxios;
 

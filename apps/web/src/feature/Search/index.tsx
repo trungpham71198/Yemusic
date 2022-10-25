@@ -1,10 +1,8 @@
-import { useState } from 'react';
-
-import { ISong } from '@core/domain/models/song';
+import SearchCpn from '@components/organisms/Search';
+import type { ISong } from '@core/domain/models/song';
 import { SongInstance } from '@core/infras/instances/songInstance';
-
-import SearchCpn from '@common/components/organisms/Search';
 import { useAppDispatch } from '@store/store';
+import { useState } from 'react';
 import { addSong } from 'src/store/reducer/songSlice';
 
 const Search = () => {

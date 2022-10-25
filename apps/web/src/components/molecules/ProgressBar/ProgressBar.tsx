@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 
-import abemClasses from '@utils/abemClasses';
+import { mapClassNameModifiers } from '@helper/style';
 
 import './style.scss';
 
@@ -123,7 +123,7 @@ export const ProgressBar: FC<ProgressBarProps> = ({
 
   return (
     <div
-      className={abemClasses(
+      className={mapClassNameModifiers(
         'm-progress-bar',
         isInteractive && 'is-interactive'
       )}

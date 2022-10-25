@@ -24,6 +24,7 @@
       "@feature/*": ["src/feature/*"],
       "@store/*": ["src/store/*"],
       "@utils/*": ["src/utils/*"],
+      "@helpers/*": ["src/helpers/*"],
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/pages/*"],
       "@/*": ["src/*"]

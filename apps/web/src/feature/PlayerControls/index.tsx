@@ -1,8 +1,8 @@
-import { FC, useState } from 'react';
-
-import PlayerControlsCpn from '@common/components/organisms/PlayerControls';
-import { useAppDispatch, useAppSelector } from 'src/store/store';
+import PlayerControlsCpn from '@components/organisms/PlayerControls';
 import { setCurrent } from '@store/reducer/songSlice';
+import type { FC } from 'react';
+import { useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'src/store/store';
 
 interface IProps {
   device: 'mobile' | 'desktop';

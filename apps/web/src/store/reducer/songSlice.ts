@@ -1,10 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit';
+import type { IPlayerControls, ISong } from '@core/domain/models/song';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../store';
-import { IPlayerControls } from '@core/domain/models/song';
-import { ISong } from '@core/domain/models/song';
+import { createSlice } from '@reduxjs/toolkit';
 
-interface SongState {
+import type { RootState } from '../store';
+
+export interface ISongState {
   playList: IPlayerControls[];
   playListTrending: ISong[];
   current: number;
@@ -14,7 +14,7 @@ interface IAddSong extends IPlayerControls {
   position?: 'first' | 'last';
 }
 
-const initialState: SongState = {
+const initialState: ISongState = {
   playList: [],
   current: 0,
   playListTrending: [],
@@ -24,10 +24,10 @@ export const songSlice = createSlice({
   name: 'song',
   initialState,
   reducers: {
-    setCurrent: (state, action: PayloadAction<number>) => {
+    setCurrent: (state: ISongState, action: PayloadAction<number>) => {
       state.current = action.payload;
     },
-    addSong: (state, action: PayloadAction<IAddSong>) => {
+    addSong: (state: ISongState, action: PayloadAction<IAddSong>) => {
       let payload = [...state.playList, action.payload];
 
       if (action.payload.position === 'first') {
@@ -36,7 +36,7 @@ export const songSlice = createSlice({
       }
       state.playList = payload;
     },
-    addSongTrending: (state, action: PayloadAction<ISong[]>) => {
+    addSongTrending: (state: ISongState, action: PayloadAction<ISong[]>) => {
       state.playListTrending = action.payload;
     },
   },

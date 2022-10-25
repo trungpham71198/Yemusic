@@ -1,7 +1,6 @@
-import { IPlayerControls } from '@core/domain/models/player';
-import { ISong } from '@core/domain/models/song';
-import { Http } from '@core/domain/repositories/httpAxios';
-import { SongRepository } from '@core/domain/repositories/songRepository';
+import type { IPlayerControls, ISong } from '@core/domain/models/song';
+import type { Http } from '@core/domain/repositories/httpAxios';
+import type { SongRepository } from '@core/domain/repositories/songRepository';
 
 export const songRepository = (client: Http): SongRepository => ({
   getSongByKeyword: async (songId: string | number): Promise<ISong[]> => {

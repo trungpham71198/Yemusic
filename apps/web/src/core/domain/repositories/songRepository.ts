@@ -1,5 +1,4 @@
-import { IPlayerControls } from '../models/song';
-import { ISong } from '../models/song';
+import type { IPlayerControls, ISong } from '../models/song';
 
 export interface SongRepository {
   getSongByKeyword: (songId: string | number) => Promise<ISong[] | []>;

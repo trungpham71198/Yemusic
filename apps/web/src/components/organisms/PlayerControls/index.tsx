@@ -1,11 +1,4 @@
-import React, {
-  FC,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-  useMemo,
-} from 'react';
+import './style.scss';
 
 import {
   MoreIcon,
@@ -16,14 +9,15 @@ import {
   ShuffleIcon,
   SkipNextActiveIcon,
   SkipPreviousActiveIcon,
-} from '@common/components/atoms/Icon';
-import ProgressBar from '@common/components/molecules/ProgressBar';
-import abemClasses from '@utils/abemClasses';
+} from '@components/atoms/Icon';
+import ProgressBar from '@components/molecules/ProgressBar';
+import type { IPlayerControls } from '@core/domain/models/song';
+import { mapClassNameModifiers } from '@helper/style';
 import { useViewport } from '@hooks/useViewport';
 import { HHMMSS } from '@utils/formatTime';
-import { IPlayerControls } from '@core/domain/models/song';
-
-import './style.scss';
+import type { FC } from 'react';
+import type React from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 export type IViewMode = 'full' | 'mini';
 export type IRepeatMode = 'none' | 'one' | 'all';
@@ -195,7 +189,7 @@ export const PlayerControls: FC<IProps> = ({
 
     return (
       <button
-        className={abemClasses('o-playerControls__item', className)}
+        className={mapClassNameModifiers('o-playerControls__item', className)}
         data-loading='inherit'
         onClick={onclick}
         key={type}
@@ -207,7 +201,7 @@ export const PlayerControls: FC<IProps> = ({
 
   return (
     <div
-      className={abemClasses('o-playerControls', viewMode, viewport)}
+      className={mapClassNameModifiers('o-playerControls', viewMode, viewport)}
       data-loading={isLoading}
       onClick={e => handleToggleMode(e, 'full')}
     >
@@ -237,7 +231,7 @@ export const PlayerControls: FC<IProps> = ({
 
       <div className='o-playerControls__image'>
         <div
-          className={abemClasses(
+          className={mapClassNameModifiers(
             'o-playerControls__inner',
             isPlayed && 'playing'
           )}

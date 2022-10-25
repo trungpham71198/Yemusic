@@ -1,12 +1,11 @@
-import './style.scss';
-
 import SongCard, { SongCardList } from '@components/organisms/Songs';
-import { ISong } from '@core/domain/models/song';
+import type { ISong } from '@core/domain/models/song';
 import { SongInstance } from '@core/infras/instances/songInstance';
+import type { ISongState } from '@store/reducer/songSlice';
 import { addSong, addSongTrending } from '@store/reducer/songSlice';
 import { useAppDispatch, useAppSelector } from '@store/store';
-import { FC, useEffect, useState } from 'react';
-import { useCallback } from 'react';
+import type { FC } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 interface IState {
   dataTrending: ISong[];
@@ -34,7 +33,7 @@ const Home: FC = () => {
     playList: playListSelect,
     current,
     playListTrending: playListTrendingInit,
-  } = useAppSelector(state => state.song);
+  } = useAppSelector((state: { song: ISongState }) => state.song);
   const dispatch = useAppDispatch();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -94,7 +93,7 @@ const Home: FC = () => {
     setPlayList(songsTrending);
     setIsLoading(false);
     dispatch(addSongTrending(songsTrending));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     if (!playListTrendingInit.length) {
@@ -104,7 +103,6 @@ const Home: FC = () => {
   }, []);
 
   const playListTrending = isLoading ? dataOnLoading : playList;
-  console.log(playListTrending);
 
   return (
     <div className='p-home'>

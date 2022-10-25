@@ -1,7 +1,8 @@
-import { songSlice } from './reducer/songSlice';
 import { configureStore } from '@reduxjs/toolkit';
-import { useDispatch, useSelector } from 'react-redux';
 import type { TypedUseSelectorHook } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { songSlice } from './reducer/songSlice';
 
 export const store = configureStore({
   reducer: {

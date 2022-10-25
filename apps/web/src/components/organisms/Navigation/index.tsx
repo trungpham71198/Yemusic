@@ -1,14 +1,13 @@
-import { FC } from 'react';
-
 import {
   HeartActiveIcon,
   HeartIcon,
   HomeActiveIcon,
   HomeIcon,
   SearchIcon,
-} from '@common/components/atoms/Icon';
-import Nav from '@common/components/molecules/Nav';
-import abemClasses from '@utils/abemClasses';
+} from '@components/atoms/Icon';
+import Nav from '@components/molecules/Nav';
+import { mapClassNameModifiers } from '@helpers/style';
+import type { FC } from 'react';
 
 export interface TProps {
   device?: 'mobile' | 'desktop';
@@ -41,7 +40,7 @@ export const Navigation: FC<TProps> = props => {
   ];
 
   return (
-    <div className={abemClasses('o-navigation', device)}>
+    <div className={mapClassNameModifiers('o-navigation', device)}>
       <Nav mode={mode} device={device} navigation={navigation} />
     </div>
   );

@@ -1,8 +1,8 @@
-import Button from '@common/components/atoms/Button';
-import { CircleActiveIcon, CircleIcon } from '@common/components/atoms/Icon';
-import { FC, useContext } from 'react';
-
 import logoSrc from '@assets/images/logo.png';
+import Button from '@components/atoms/Button';
+import { CircleActiveIcon, CircleIcon } from '@components/atoms/Icon';
+import type { FC } from 'react';
+import { useContext } from 'react';
 //import { actionSetTheme, DisplayContext } from '@domains/display';
 import { Link } from 'react-router-dom';
 

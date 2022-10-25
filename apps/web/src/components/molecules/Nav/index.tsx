@@ -7,7 +7,7 @@ import React, {
   useState,
 } from 'react';
 
-import abemClasses from '@utils/abemClasses';
+import { mapClassNameModifiers } from '@helper/style';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import './style.scss';
@@ -109,11 +109,11 @@ export const Nav: FC<NavProps> = ({
   }, []);
 
   return (
-    <ul className={abemClasses('m-nav', mode)} ref={navRef}>
+    <ul className={mapClassNameModifiers('m-nav', mode)} ref={navRef}>
       {navigations.map((nav, index) => (
         <li
           key={nav.name}
-          className={abemClasses(
+          className={mapClassNameModifiers(
             'm-nav_item',
             mode === 'horizontal' ? 'mini' : 'full',
             index === selected && 'active'

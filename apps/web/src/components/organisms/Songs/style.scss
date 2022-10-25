@@ -5,7 +5,7 @@
   padding: pxtorem(8);
 
   &:hover {
-    background-color: $HOVER_OVERLAY;
+    // background-color: $HOVER_OVERLAY;
   }
 
   &.-horizontal {
@@ -28,7 +28,7 @@
       text-align: center;
 
       time {
-        @include text(caption);
+        // @include text(caption);
 
         user-select: none;
       }
@@ -89,7 +89,7 @@
           width: 2px;
           height: 12px;
           margin: 0 pxtorem(4);
-          background-color: $ACCENT-BACKGROUND;
+          // background-color: $ACCENT-BACKGROUND;
           border-radius: pxtorem(1);
           animation: now-playing 1000ms infinite;
 
@@ -100,7 +100,7 @@
             width: 2px;
             height: 6px;
             content: '';
-            background-color: $ACCENT-BACKGROUND;
+            // background-color: $ACCENT-BACKGROUND;
             border-radius: 1px;
             animation: now-playing 1000ms infinite;
             animation-delay: 500ms;
@@ -130,7 +130,7 @@
         }
 
         p {
-          color: $ACCENT-TEXT;
+          // color: $ACCENT-TEXT;
         }
       }
     }
@@ -139,7 +139,7 @@
   &_image {
     position: relative;
     overflow: hidden;
-    border: 1px solid $DIVIDER;
+    // border: 1px solid $DIVIDER;
 
     &::before {
       position: absolute;
@@ -164,11 +164,11 @@
       min-width: 25%;
 
       h4 {
-        @include text(body);
+        // @include text(body);
         cursor: pointer;
         display: inline-block;
         margin: 0;
-        color: $PRIMARY-TEXT;
+        // color: $PRIMARY-TEXT;
       }
     }
 
@@ -177,7 +177,7 @@
       min-width: 20%;
 
       p {
-        @include text(caption);
+        // @include text(caption);
 
         margin: 0;
       }
@@ -210,10 +210,10 @@
     padding: 0 pxtorem(8);
 
     h2 {
-      @include text(heading);
+      // @include text(heading);
 
       margin: 0;
-      color: $PRIMARY-TEXT;
+      // color: $PRIMARY-TEXT;
     }
   }
 

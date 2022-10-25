@@ -1,212 +1,212 @@
-.o-playerControls {
-  $root: &;
-  background-color: $PLAYER-CONTROLS-BACKGROUND;
-  position: relative;
-  display: flex;
+// .o-playerControls {
+//   $root: &;
+//   background-color: $PLAYER-CONTROLS-BACKGROUND;
+//   position: relative;
+//   display: flex;
 
-  &.-mobile {
-    background-color: $PLAYER-CONTROLS-BACKGROUND;
+//   &.-mobile {
+//     background-color: $PLAYER-CONTROLS-BACKGROUND;
 
-    &.-full {
-      position: fixed;
-      inset: 0;
-      z-index: 99;
-      height: 100%;
-      padding: pxtorem(16);
-    }
-  }
+//     &.-full {
+//       position: fixed;
+//       inset: 0;
+//       z-index: 99;
+//       height: 100%;
+//       padding: pxtorem(16);
+//     }
+//   }
 
-  &.-desktop {
-    padding: pxtorem(16);
-  }
+//   &.-desktop {
+//     padding: pxtorem(16);
+//   }
 
-  &.-mini {
-    gap: pxtorem(16);
-    align-items: center;
-    // padding: pxtorem(8) pxtorem(8) pxtorem(12);
+//   &.-mini {
+//     gap: pxtorem(16);
+//     align-items: center;
+//     // padding: pxtorem(8) pxtorem(8) pxtorem(12);
 
-    #{$root}__header {
-      display: none;
-    }
+//     #{$root}__header {
+//       display: none;
+//     }
 
-    #{$root}__image {
-      #{$root}__inner {
-        $player-controls-mini-image-width: 40px;
+//     #{$root}__image {
+//       #{$root}__inner {
+//         $player-controls-mini-image-width: 40px;
 
-        width: $player-controls-mini-image-width;
-      }
-    }
+//         width: $player-controls-mini-image-width;
+//       }
+//     }
 
-    #{$root}__time {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
+//     #{$root}__time {
+//       position: absolute;
+//       right: 0;
+//       bottom: 0;
+//       left: 0;
 
-      #{$root}__value {
-        display: none;
-      }
-    }
+//       #{$root}__value {
+//         display: none;
+//       }
+//     }
 
-    #{$root}__info {
-      flex-grow: 1;
-      overflow: hidden;
-    }
+//     #{$root}__info {
+//       flex-grow: 1;
+//       overflow: hidden;
+//     }
 
-    #{$root}__actions {
-      gap: pxtorem(16);
+//     #{$root}__actions {
+//       gap: pxtorem(16);
 
-      #{$root}__item {
-        &.-hidden {
-          display: none;
-        }
-      }
-    }
-  }
+//       #{$root}__item {
+//         &.-hidden {
+//           display: none;
+//         }
+//       }
+//     }
+//   }
 
-  &.-full {
-    flex-direction: column;
-    gap: pxtorem(16);
-    height: 100%;
+//   &.-full {
+//     flex-direction: column;
+//     gap: pxtorem(16);
+//     height: 100%;
 
-    #{$root}__header {
-      display: flex;
-      justify-content: space-between;
+//     #{$root}__header {
+//       display: flex;
+//       justify-content: space-between;
 
-      #{$root}__title {
-        width: fit-content;
+//       #{$root}__title {
+//         width: fit-content;
 
-        h2 {
-          @include text(heading);
+//         h2 {
+//           @include text(heading);
 
-          margin: 0;
-        }
-      }
-    }
+//           margin: 0;
+//         }
+//       }
+//     }
 
-    #{$root}__image {
-      display: flex;
-      flex-grow: 1;
-      align-items: center;
-      justify-content: center;
-      padding: pxtorem(32);
+//     #{$root}__image {
+//       display: flex;
+//       flex-grow: 1;
+//       align-items: center;
+//       justify-content: center;
+//       padding: pxtorem(32);
 
-      #{$root}__inner {
-        width: 100%;
-      }
-    }
+//       #{$root}__inner {
+//         width: 100%;
+//       }
+//     }
 
-    #{$root}__time {
-      display: flex;
-      flex-wrap: wrap;
-      gap: pxtorem(4);
-      justify-content: space-between;
-      width: 100%;
+//     #{$root}__time {
+//       display: flex;
+//       flex-wrap: wrap;
+//       gap: pxtorem(4);
+//       justify-content: space-between;
+//       width: 100%;
 
-      #{$root}__progress-bar {
-        width: 100%;
-      }
+//       #{$root}__progress-bar {
+//         width: 100%;
+//       }
 
-      #{$root}__value {
-        span {
-          @include text(caption);
+//       #{$root}__value {
+//         span {
+//           @include text(caption);
 
-          color: $SECONDARY-TEXT;
-        }
-      }
-    }
+//           color: $SECONDARY-TEXT;
+//         }
+//       }
+//     }
 
-    #{$root}__actions {
-      justify-content: space-between;
-    }
-  }
+//     #{$root}__actions {
+//       justify-content: space-between;
+//     }
+//   }
 
-  &__image {
-    #{$root}__inner {
-      $player-controls-image-max-width: 450px;
-      $player-controls-image-max-height: 450px;
-      $player-controls-image-spin-animation-duration: 12000ms;
+//   &__image {
+//     #{$root}__inner {
+//       $player-controls-image-max-width: 450px;
+//       $player-controls-image-max-height: 450px;
+//       $player-controls-image-spin-animation-duration: 12000ms;
 
-      max-width: $player-controls-image-max-width;
-      max-height: $player-controls-image-max-height;
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-      pointer-events: none;
-      user-select: none;
-      border-radius: 999px !important;
+//       max-width: $player-controls-image-max-width;
+//       max-height: $player-controls-image-max-height;
+//       aspect-ratio: 1 / 1;
+//       overflow: hidden;
+//       pointer-events: none;
+//       user-select: none;
+//       border-radius: 999px !important;
 
-      &.-playing {
-        animation-name: spin;
-        animation-duration: $player-controls-image-spin-animation-duration;
-        animation-timing-function: linear;
-        animation-iteration-count: infinite;
-      }
+//       &.-playing {
+//         animation-name: spin;
+//         animation-duration: $player-controls-image-spin-animation-duration;
+//         animation-timing-function: linear;
+//         animation-iteration-count: infinite;
+//       }
 
-      img {
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
+//       img {
+//         width: 100%;
+//         height: 100%;
+//       }
+//     }
+//   }
 
-  &__info {
-    display: flex;
-    flex-direction: column;
-    gap: pxtorem(4);
+//   &__info {
+//     display: flex;
+//     flex-direction: column;
+//     gap: pxtorem(4);
 
-    #{$root}__name {
-      display: inline-block;
-      overflow: hidden;
+//     #{$root}__name {
+//       display: inline-block;
+//       overflow: hidden;
 
-      h3 {
-        @include text(body);
+//       h3 {
+//         @include text(body);
 
-        margin: 0;
-        overflow: hidden;
-        color: $PRIMARY-TEXT;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-    }
+//         margin: 0;
+//         overflow: hidden;
+//         color: $PRIMARY-TEXT;
+//         text-overflow: ellipsis;
+//         white-space: nowrap;
+//       }
+//     }
 
-    #{$root}__author {
-      display: inline-block;
+//     #{$root}__author {
+//       display: inline-block;
 
-      p {
-        @include text(caption);
+//       p {
+//         @include text(caption);
 
-        margin: 0;
-        overflow: hidden;
-        color: $SECONDARY-TEXT;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-    }
-  }
+//         margin: 0;
+//         overflow: hidden;
+//         color: $SECONDARY-TEXT;
+//         text-overflow: ellipsis;
+//         white-space: nowrap;
+//       }
+//     }
+//   }
 
-  &__actions {
-    display: flex;
+//   &__actions {
+//     display: flex;
 
-    #{$root}__item {
-      $player-controls-actionlist-item-width: 24px;
-      $player-controls-actionlist-item-height: 24px;
+//     #{$root}__item {
+//       $player-controls-actionlist-item-width: 24px;
+//       $player-controls-actionlist-item-height: 24px;
 
-      width: $player-controls-actionlist-item-width;
-      height: $player-controls-actionlist-item-height;
-      padding: 0;
-      background-color: transparent;
-      border: 0;
-      outline: 0;
-    }
-  }
-}
+//       width: $player-controls-actionlist-item-width;
+//       height: $player-controls-actionlist-item-height;
+//       padding: 0;
+//       background-color: transparent;
+//       border: 0;
+//       outline: 0;
+//     }
+//   }
+// }
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
+// @keyframes spin {
+//   from {
+//     transform: rotate(0deg);
+//   }
 
-  to {
-    transform: rotate(360deg);
-  }
-}
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }
