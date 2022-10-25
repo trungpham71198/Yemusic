@@ -8,6 +8,7 @@
     "prepare": "husky install"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@monostack/formatter": "^1.0.0",
     "@monostack/gitkit": "^1.6.3",
@@ -23,5 +24,13 @@
     "hooks": {
       "pre-commit": "npx pretty-quick --staged && pnpm lint"
     }
+  },
+  "lint-staged": {
+    "src/**/!(*d).{ts,tsx}": [
+      "eslint ./src --ext .ts --ext .tsx --color --max-warnings 0"
+    ],
+    "*.{css,scss}": [
+      "stylelint ./src/**/*.scss --mw 0"
+    ]
   }
 }
