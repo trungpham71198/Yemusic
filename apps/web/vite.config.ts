@@ -1,13 +1,14 @@
 import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
+import svgr from 'vite-plugin-svgr';
 import tsconfigPathsPlugin from 'vite-tsconfig-paths';
 
 const pathSrc = resolve(__dirname, './src').replace(/\\/g, '/');
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), tsconfigPathsPlugin()],
+  plugins: [react(), svgr(), tsconfigPathsPlugin()],
   css: {
     preprocessorOptions: {
       scss: {

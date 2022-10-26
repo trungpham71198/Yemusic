@@ -1,3 +1,4 @@
+import Icon from '@components/atoms/Icon';
 import SongCard, { SongCardList } from '@components/organisms/Songs';
 import type { ISong } from '@core/domain/models/song';
 import { SongInstance } from '@core/infras/instances/songInstance';
@@ -6,7 +7,6 @@ import { addSong, addSongTrending } from '@store/reducer/songSlice';
 import { useAppDispatch, useAppSelector } from '@store/store';
 import type { FC } from 'react';
 import { useCallback, useEffect, useState } from 'react';
-
 interface IState {
   dataTrending: ISong[];
   isLoading: boolean;
@@ -106,7 +106,8 @@ const Home: FC = () => {
 
   return (
     <div className='p-home'>
-      <SongCardList title='Top 30' viewMode='list' isLoading={isLoading}>
+      <Icon iconName='arrow-left' />
+      {/* <SongCardList title='Top 30' viewMode='list' isLoading={isLoading}>
         {playListTrending?.map(song => (
           <SongCard
             key={song.yId}
@@ -121,7 +122,7 @@ const Home: FC = () => {
             onClickDownload={() => handleDownloadSong(song.yId, song.title)}
           />
         ))}
-      </SongCardList>
+      </SongCardList> */}
     </div>
   );
 };

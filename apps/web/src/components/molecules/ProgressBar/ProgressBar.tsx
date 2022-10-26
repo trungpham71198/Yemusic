@@ -1,8 +1,9 @@
-import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
-
-import { mapClassNameModifiers } from '@helper/style';
-
 import './style.scss';
+
+import { mapClassNameModifiers } from '@helpers/style';
+import type { FC } from 'react';
+import type React from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export interface ProgressBarProps {
   isInteractive?: boolean;

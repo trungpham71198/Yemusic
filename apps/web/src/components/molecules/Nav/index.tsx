@@ -1,17 +1,10 @@
-import React, {
-  FC,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-
-import { mapClassNameModifiers } from '@helper/style';
-import { useLocation, useNavigate } from 'react-router-dom';
-
 import './style.scss';
-import { useMemo } from 'react';
+
+import { mapClassNameModifiers } from '@helpers/style';
+import type { FC, ReactNode } from 'react';
+import type React from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export interface INavigation {
   icon: ReactNode[];

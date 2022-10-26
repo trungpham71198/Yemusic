@@ -12,7 +12,7 @@ import {
 } from '@components/atoms/Icon';
 import ProgressBar from '@components/molecules/ProgressBar';
 import type { IPlayerControls } from '@core/domain/models/song';
-import { mapClassNameModifiers } from '@helper/style';
+import { mapClassNameModifiers } from '@helpers/style';
 import { useViewport } from '@hooks/useViewport';
 import { HHMMSS } from '@utils/formatTime';
 import type { FC } from 'react';
