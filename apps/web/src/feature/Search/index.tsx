@@ -1,38 +1,129 @@
-import SearchCpn from '@components/organisms/Search';
+import OSearch from '@components/organisms/Search';
 import type { ISong } from '@core/domain/models/song';
 import { SongInstance } from '@core/infras/instances/songInstance';
 import { useAppDispatch } from '@store/store';
-import { useState } from 'react';
+import { safelyParseJSON } from '@utils/json';
+import type { AxiosRequestConfig } from 'axios';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { addSong } from 'src/store/reducer/songSlice';
+
+interface ISongs {
+  list: ISong[];
+  isSearching?: boolean;
+}
+
+const MAX_LIST = 10;
 
 const Search = () => {
   const dispatch = useAppDispatch();
 
-  const [songs, setSongs] = useState<ISong[]>([]);
+  const isAbortRef = useRef<boolean>(false);
 
-  const handleClickChoose = async (data: ISong) => {
-    const payloadAudio = await SongInstance.getAudioBySongId(data.yId);
+  const [state, setState] = useState({
+    keyword: '',
+  });
+  const [songs, setSongs] = useState<ISongs>({
+    list: [],
+    isSearching: false,
+  });
 
-    if (payloadAudio?.audioUrl) {
-      dispatch(
-        addSong({ ...data, audioUrl: payloadAudio.audioUrl, isPlayed: true })
+  const handleToggleSearching = (isSearching: boolean) => {
+    setSongs(prev => ({
+      ...prev,
+      isSearching,
+    }));
+  };
+
+  const handleAddRecentSong = (song: ISong) => {
+    const oldRecentSongs: ISong[] = safelyParseJSON(
+      localStorage.getItem('recent') || '[]',
+      []
+    );
+
+    const indexOfSongInOldRecent = oldRecentSongs.findIndex(
+      item => item.yId === song.yId
+    );
+
+    if (indexOfSongInOldRecent === -1) {
+      localStorage.setItem(
+        'recent',
+        JSON.stringify([...oldRecentSongs, song].slice(-MAX_LIST).reverse())
+      );
+    } else {
+      oldRecentSongs.splice(indexOfSongInOldRecent, 1);
+
+      localStorage.setItem(
+        'recent',
+        JSON.stringify([...oldRecentSongs, song].slice(-MAX_LIST).reverse())
       );
     }
   };
-  const handleRemoveSongSearchRecent = (id: string | number) => {};
 
-  const handleSearch = async (keyword: string) => {
-    if (!keyword) return null;
+  const handleClickSong = async (song: ISong) => {
+    handleAddRecentSong(song);
 
-    const resultSearch = await SongInstance.getSongByKeyword(keyword);
-    setSongs(resultSearch);
+    const payloadAudio = await SongInstance.getAudioBySongId(song.yId);
+
+    if (payloadAudio?.audioUrl) {
+      dispatch(
+        addSong({ ...song, audioUrl: payloadAudio.audioUrl, isPlayed: true })
+      );
+    }
   };
 
+  const handleGetSongByKeyword = useCallback(
+    async (keyword: string, config?: AxiosRequestConfig) => {
+      handleToggleSearching(true);
+
+      try {
+        const songs = await SongInstance.getSongByKeyword(keyword, config);
+
+        setSongs(prev => ({
+          ...prev,
+          isSearching: false,
+          list: songs?.slice(0, MAX_LIST),
+        }));
+      } catch (error: any) {
+        if (error?.code === 'ERR_CANCELED') {
+          isAbortRef.current = true;
+        }
+      } finally {
+        if (!isAbortRef.current) {
+          handleToggleSearching(false);
+        }
+      }
+    },
+    []
+  );
+
+  const handleOnSearch = (keyword: string) => {
+    setState(prev => ({
+      ...prev,
+      keyword,
+    }));
+  };
+
+  useEffect(
+    function fetchLastRequest() {
+      const controller = new AbortController();
+
+      handleGetSongByKeyword(state.keyword, {
+        signal: controller.signal,
+      });
+
+      return () => {
+        controller.abort();
+      };
+    },
+    [handleGetSongByKeyword, state.keyword]
+  );
+
   return (
-    <SearchCpn
-      dataSource={songs}
-      handleClickChoose={handleClickChoose}
-      onSearch={handleSearch}
+    <OSearch
+      loading={songs.isSearching}
+      listSongs={songs.list}
+      onSearch={handleOnSearch}
+      onClickSong={handleClickSong}
     />
   );
 };

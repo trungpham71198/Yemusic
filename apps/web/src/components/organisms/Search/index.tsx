@@ -1,140 +1,193 @@
 import './style.scss';
 
-import { ArrowLeftIcon, SearchIcon } from '@components/atoms/Icon';
+import Icon from '@components/atoms/Icon';
 import type { InputProps } from '@components/atoms/Input';
 import Input from '@components/atoms/Input';
 import type { ISong } from '@core/domain/models/song';
-import { mapClassNameModifiers } from '@helper/style';
-import { useDebounce } from '@hooks/useDebounce';
+import debounce from '@utils/debouce';
+import { safelyParseJSON } from '@utils/json';
+import classNames from 'classnames';
 import type { FC } from 'react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 
-export interface ISearch extends InputProps {
+export interface IOSearch extends InputProps {
+  loading?: boolean;
+  listSongs?: ISong[];
   onSearch: (value: string) => void;
-  dataSource: ISong[];
-  handleClickChoose: (item: ISong) => void;
+  onClickSong: (item: ISong) => void;
 }
 
-const Search: FC<ISearch> = ({
+const OSearch: FC<IOSearch> = ({
+  loading,
+  listSongs,
   onSearch,
-  dataSource,
-  handleClickChoose,
-  ...otherProps
+  onClickSong,
 }) => {
-  const [isActive, setIsActive] = useState(false);
-  const [keyword, setKeyword] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-
   const searchRef = useRef<HTMLDivElement>(null);
-  const keywordDebounce = useDebounce(keyword, 500);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setKeyword(e.target.value);
-    setIsLoading(true);
+  const [state, setState] = useState({
+    keyword: '',
+    isFocus: false,
+    isTyping: false,
+  });
+
+  const onSearchDebounce = useMemo(
+    () => debounce((value: string) => onSearch(value)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    []
+  );
+
+  const handleToggleFocus = (isFocus: boolean) => {
+    setState(prev => ({
+      ...prev,
+      isFocus,
+    }));
   };
 
-  const handleFocus = () => {
-    setIsActive(true);
+  const handleToggleTypingMemo = useMemo(
+    () =>
+      debounce((isTyping: boolean) =>
+        setState(prev => ({
+          ...prev,
+          isTyping,
+        }))
+      ),
+    []
+  );
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+
+    setState(prev => ({
+      ...prev,
+      keyword: value,
+      isTyping: true,
+    }));
+
+    handleToggleTypingMemo(false);
+
+    if (value.trim()) {
+      onSearchDebounce(value.trim());
+    }
   };
 
-  const handleBlur = () => {
-    setIsActive(false);
+  const handleClickSong = (song: ISong) => {
+    onClickSong(song);
+    handleToggleFocus(false);
   };
+
+  const isLoading = loading || state.isTyping;
+
+  const listSongsMemo = useMemo(() => {
+    let listSongsRendered = listSongs;
+
+    if (state.keyword.trim()) {
+      if (isLoading) {
+        listSongsRendered = new Array(3).fill({});
+      }
+    } else {
+      listSongsRendered = safelyParseJSON(
+        localStorage.getItem('recent') || '[]',
+        []
+      );
+    }
+    return listSongsRendered;
+  }, [listSongs, isLoading, state.keyword]);
 
   useEffect(() => {
-    const listener = (event: any) => {
-      if (!searchRef.current || searchRef.current.contains(event.target)) {
-        return;
+    const handleMouseDown = (e: MouseEvent) => {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(e.target as Node) &&
+        state.isFocus
+      ) {
+        handleToggleFocus(false);
       }
-      setIsActive(false);
     };
 
-    document.addEventListener('mousedown', listener);
-    document.addEventListener('touchstart', listener);
+    window.addEventListener('mousedown', handleMouseDown);
 
     return () => {
-      document.removeEventListener('mousedown', listener);
-      document.removeEventListener('touchstart', listener);
+      window.removeEventListener('mousedown', handleMouseDown);
     };
-  }, []);
-
-  useEffect(() => {
-    if (keywordDebounce) {
-      onSearch(keywordDebounce.trim());
-    }
-  }, [keywordDebounce]);
+  }, [state.isFocus]);
 
   return (
-    <div className='o-search'>
-      <div className='o-search_inner' ref={searchRef}>
-        <Input
-          prefix={
-            <div
-              className='o-search_input_icon'
-              role='button'
-              onClick={handleBlur}
+    <div
+      ref={searchRef}
+      className={classNames('o-search', state.isFocus && '-focus')}
+    >
+      <Input
+        fullWidth
+        shape='round'
+        prefix={
+          <div className='o-search_input_icon' role='button'>
+            <span
+              className={classNames(!state.isFocus && 'hidden')}
+              onClick={() => handleToggleFocus(false)}
             >
-              {isActive ? <ArrowLeftIcon /> : <SearchIcon />}
-            </div>
-          }
-          fullWidth
-          shape='round'
-          onChange={handleChange}
-          onFocus={handleFocus}
-          {...otherProps}
-        />
-        <div
-          className={mapClassNameModifiers('o-search_body', isActive && 'open')}
-          style={{
-            height:
-              dataSource.length && isActive
-                ? '250px'
-                : isActive
-                ? '82px'
-                : '0px',
-          }}
-        >
+              <Icon iconName='arrow-left' />
+            </span>
+            <span className={classNames(state.isFocus && 'hidden')}>
+              <Icon iconName='search' />
+            </span>
+          </div>
+        }
+        onFocus={() => handleToggleFocus(true)}
+        value={state.keyword}
+        onChange={handleInputChange}
+      />
+      <div className={classNames('o-search_body')}>
+        {state.isFocus && (
           <div className='o-search_title'>
-            {keyword === '' ? (
-              <p>Recent search</p>
+            {state.keyword.trim() === '' ? (
+              <p>Recent songs</p>
             ) : (
               <p>
-                Search for <strong>"{keyword}"</strong>
+                Search for <strong>"{state.keyword}"</strong>
               </p>
             )}
           </div>
-          <div className='o-search_list' data-loading={isLoading}>
-            {dataSource?.map(item => (
+        )}
+        <div className='o-search_list'>
+          {state.isFocus &&
+            listSongsMemo?.map((item, index) => (
               <div
-                className={mapClassNameModifiers('o-search_item')}
+                key={item?.yId || index}
+                className='o-search_item'
                 role='button'
-                onClick={() => handleClickChoose(item)}
-                key={item.yId}
+                data-loading={isLoading}
+                onClick={() => handleClickSong(item)}
               >
                 <div className='o-search_item_thumbnail' data-loading='inherit'>
-                  <img src={item.thumbnail.url} alt={item.title} />
+                  <img src={item?.thumbnail?.url} alt={item?.title} />
                 </div>
                 <div className='o-search_item_info'>
                   <div
-                    className='o-search_item_info_name'
+                    className={classNames(
+                      'o-search_item_info_name',
+                      isLoading && 'h-4'
+                    )}
                     data-loading='inherit'
                   >
-                    <h3>{item.title}</h3>
+                    <h4>{item?.title}</h4>
                   </div>
                   <div
-                    className='o-search_item_info_author'
+                    className={classNames(
+                      'o-search_item_info_author',
+                      isLoading && 'h-4'
+                    )}
                     data-loading='inherit'
                   >
-                    <p>{item.channel}</p>
+                    <p>{item?.channel}</p>
                   </div>
                 </div>
               </div>
             ))}
-          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Search;
+export default OSearch;

@@ -3,14 +3,12 @@ import type { Http } from '@core/domain/repositories/httpAxios';
 import type { SongRepository } from '@core/domain/repositories/songRepository';
 
 export const songRepository = (client: Http): SongRepository => ({
-  getSongByKeyword: async (songId: string | number): Promise<ISong[]> => {
-    try {
-      const result = await client.post('/song/s', { search: songId });
-      return result.data?.songs;
-    } catch (error) {
-      console.log(error);
-      return [];
-    }
+  getSongByKeyword: async (
+    keyword: string | number,
+    config
+  ): Promise<ISong[]> => {
+    const result = await client.post('/song/s', { search: keyword }, config);
+    return result.data?.songs;
   },
   getAudioBySongId: async (
     songId: string

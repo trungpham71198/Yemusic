@@ -1,7 +1,14 @@
 /* #region COLOR-BASE */
+$INTERACTIVE-BACKGROUND: rgba(var(--interactive-background, 30 30 30) / 100%);
 $COLOR-TRANSPARENT: transparent;
 $COLOR-WHITE: rgb(255, 255, 255);
 $COLOR-BLACK: rgb(0, 0, 0);
+$PRIMARY-TEXT: rgba(var(--primary-text, 219 219 219) / 100%);
+$HOVER-OVERLAY: rgba(var(--hover-overlay, 255 255 255) / 4%);
+$SECONDARY-TEXT: rgba(var(--secondary-text, 176 176 176) / 100%);
+$MODAL-BACKGROUND: rgba(var(--modal-background, 24 24 24) / 100%);
+$LOADING-BACKGROUND: rgba(var(--loading-background, 34 34 34) / 100%);
+$DIVIDER: rgba(var(--divider, 29 29 29) / 100%);
 /* #endregion */
 
 /* #region FONT-FAMILY */
