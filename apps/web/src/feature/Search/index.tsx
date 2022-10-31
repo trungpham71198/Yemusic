@@ -7,11 +7,6 @@ import type { AxiosRequestConfig } from 'axios';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { addSong } from 'src/store/reducer/songSlice';
 
-interface ISongs {
-  list: ISong[];
-  isSearching?: boolean;
-}
-
 const MAX_LIST = 10;
 
 const Search = () => {
@@ -19,20 +14,16 @@ const Search = () => {
 
   const isAbortRef = useRef<boolean>(false);
 
-  const [state, setState] = useState({
-    keyword: '',
-  });
-  const [songs, setSongs] = useState<ISongs>({
-    list: [],
-    isSearching: false,
-  });
+  const [keyword, setKeyword] = useState('');
+  const [listSongs, setListSongs] = useState<ISong[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
 
-  const handleToggleSearching = (isSearching: boolean) => {
-    setSongs(prev => ({
-      ...prev,
-      isSearching,
-    }));
-  };
+  const handleSearch = useCallback((value: string) => {
+    setListSongs([]);
+    if (value) {
+      setKeyword(value);
+    }
+  }, []);
 
   const handleAddRecentSong = (song: ISong) => {
     const oldRecentSongs: ISong[] = safelyParseJSON(
@@ -73,41 +64,31 @@ const Search = () => {
 
   const handleGetSongByKeyword = useCallback(
     async (keyword: string, config?: AxiosRequestConfig) => {
-      handleToggleSearching(true);
+      setIsSearching(true);
 
       try {
         const songs = await SongInstance.getSongByKeyword(keyword, config);
 
-        setSongs(prev => ({
-          ...prev,
-          isSearching: false,
-          list: songs?.slice(0, MAX_LIST),
-        }));
+        setListSongs(songs?.slice(0, MAX_LIST));
+        setIsSearching(false);
       } catch (error: any) {
         if (error?.code === 'ERR_CANCELED') {
           isAbortRef.current = true;
         }
       } finally {
         if (!isAbortRef.current) {
-          handleToggleSearching(false);
+          setIsSearching(false);
         }
       }
     },
     []
   );
 
-  const handleOnSearch = (keyword: string) => {
-    setState(prev => ({
-      ...prev,
-      keyword,
-    }));
-  };
-
   useEffect(
     function fetchLastRequest() {
       const controller = new AbortController();
 
-      handleGetSongByKeyword(state.keyword, {
+      handleGetSongByKeyword(keyword, {
         signal: controller.signal,
       });
 
@@ -115,14 +96,14 @@ const Search = () => {
         controller.abort();
       };
     },
-    [handleGetSongByKeyword, state.keyword]
+    [handleGetSongByKeyword, keyword]
   );
 
   return (
     <OSearch
-      loading={songs.isSearching}
-      listSongs={songs.list}
-      onSearch={handleOnSearch}
+      loading={isSearching}
+      listSongs={listSongs}
+      onSearch={handleSearch}
       onClickSong={handleClickSong}
     />
   );
