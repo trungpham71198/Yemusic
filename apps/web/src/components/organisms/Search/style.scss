@@ -1,21 +1,22 @@
 .o-search {
   $root: &;
   position: relative;
-  height: 100%;
 
-  .o-search_inner {
-    position: absolute;
-    top: pxtorem(8);
-    left: pxtorem(8);
-    width: 100%;
-    min-height: 42px;
-    max-width: 500px;
-    border-radius: pxtorem(8);
+  top: rem(8);
+  left: rem(8);
+  width: 100%;
+  min-height: 40px;
+  max-width: 500px;
+  border-radius: rem(8);
 
-    display: flex;
-    flex-direction: column;
-    gap: pxtorem(4);
-    padding: pxtorem(8);
+  display: flex;
+  flex-direction: column;
+  gap: rem(4);
+  padding: rem(8);
+
+  &.-focus {
+    background-color: $MODAL-BACKGROUND;
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
   }
 
   &_body {
@@ -23,13 +24,9 @@
     overflow: hidden;
     border-radius: 8px;
     padding: 4px 0;
-    margin-left: -8px;
     margin-top: -52px;
+    width: 100%;
     z-index: 9;
-    width: 496px;
-    visibility: hidden;
-    background-color: $MODAL-BACKGROUND;
-    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
 
     &.-open {
       max-height: 480px;
@@ -52,13 +49,11 @@
   }
 
   &_title {
-    padding: pxtorem(8);
+    padding: rem(8);
     margin-top: 48px;
 
     p,
     strong {
-      @include text(title);
-
       margin: 0;
     }
 
@@ -75,17 +70,31 @@
   }
 
   &_list {
-    display: flex;
-    flex-direction: column;
-    gap: pxtorem(4);
+    max-height: 400px;
+    overflow-y: auto;
+    scrollbar-width: 10px;
+
+    &::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      border-radius: rem(4);
+      background: $DIVIDER;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: rem(4);
+      background: $HOVER-OVERLAY;
+    }
 
     #{$root}_item {
       display: flex;
-      gap: pxtorem(8);
       align-items: center;
-      padding: pxtorem(8);
-      border-radius: pxtorem(8);
-      margin-right: 0.5rem;
+      gap: rem(8);
+      align-items: center;
+      padding: rem(8);
+      border-radius: rem(8);
       overflow: hidden;
       cursor: pointer;
 
@@ -101,7 +110,7 @@
         min-width: 36px;
         height: 36px;
         background-color: rgb(98 89 89);
-        border-radius: pxtorem(4);
+        border-radius: rem(4);
 
         svg {
           width: 20px;
@@ -109,33 +118,33 @@
         }
       }
 
+      $thumbnail-width: 64px;
       &_thumbnail {
-        width: 64px;
-        min-width: 64px;
+        width: #{$thumbnail-width};
+        min-width: #{$thumbnail-width};
         height: 36px;
 
         img {
           width: 100%;
           height: 100%;
-          border-radius: pxtorem(4);
+          border-radius: rem(4);
         }
       }
 
       &_info {
         display: flex;
         flex-direction: column;
-        flex-grow: 1;
-        gap: pxtorem(4);
+        gap: rem(4);
         justify-content: space-between;
+
+        width: calc(100% - #{$thumbnail-width} - 0.25rem);
 
         &_name {
           display: inline-block;
           min-width: 30%;
           overflow: hidden;
 
-          h3 {
-            @include text(body);
-
+          h4 {
             margin: 0;
             overflow: hidden;
             color: $PRIMARY-TEXT;
@@ -151,8 +160,6 @@
           overflow: hidden;
 
           p {
-            @include text(caption);
-
             margin: 0;
             overflow: hidden;
             color: $SECONDARY-TEXT;

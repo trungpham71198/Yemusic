@@ -1,65 +1,63 @@
-// $root: a-input-group;
+$root: a-input-group;
 
-// .a-input-group {
-//   $root: &;
-//   $input-height: 40px;
-//   $input-disabled-opacity: 0.32;
+.a-input-group {
+  $root: &;
+  $input-height: 40px;
+  $input-disabled-opacity: 0.32;
 
-//   position: relative;
-//   display: inline-flex;
-//   align-items: center;
-//   height: $input-height;
-//   min-height: $input-height;
-//   overflow: hidden;
-//   background-color: $INTERACTIVE-BACKGROUND;
-//   border-radius: pxtorem(8);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: $input-height;
+  min-height: $input-height;
+  overflow: hidden;
+  background-color: $INTERACTIVE-BACKGROUND;
+  border-radius: rem(8);
 
-//   &:hover {
-//     #{$root}_addon,
-//     #{$root}_input {
-//       color: $PRIMARY-TEXT;
-//       background-color: $HOVER-OVERLAY;
-//     }
-//   }
+  &:hover {
+    #{$root}_addon,
+    #{$root}_input {
+      color: $PRIMARY-TEXT;
+      background-color: $HOVER-OVERLAY;
+    }
+  }
 
-//   &.-disabled {
-//     pointer-events: none;
-//     opacity: $input-disabled-opacity;
-//   }
+  &.-disabled {
+    pointer-events: none;
+    opacity: $input-disabled-opacity;
+  }
 
-//   &.-full-width {
-//     width: 100%;
-//   }
+  &.-full-width {
+    width: 100%;
+  }
 
-//   &.-round {
-//     border-radius: 999px;
-//   }
+  &.-round {
+    border-radius: 999px;
+  }
 
-//   &_addon {
-//     display: inline-flex;
-//     align-items: center;
-//     height: 100%;
-//     overflow: hidden;
+  &_addon {
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
 
-//     &.-prefix {
-//       padding: 0 0 0 pxtorem(8);
-//     }
+    &.-prefix {
+      padding: 0 0 0 rem(8);
+    }
 
-//     &.-suffix {
-//       padding: 0 pxtorem(8) 0 0;
-//     }
-//   }
+    &.-suffix {
+      padding: 0 rem(8) 0 0;
+    }
+  }
 
-//   &_input {
-//     @include text(body);
-
-//     flex-grow: 1;
-//     height: 100%;
-//     padding: 0 pxtorem(12);
-//     font-family: inherit;
-//     color: $SECONDARY-TEXT;
-//     background-color: $COLOR-TRANSPARENT;
-//     border: none;
-//     outline: none;
-//   }
-// }
+  &_input {
+    flex-grow: 1;
+    height: 100%;
+    padding: 0 rem(12) rem(4);
+    font-family: inherit;
+    color: $SECONDARY-TEXT;
+    background-color: $COLOR-TRANSPARENT;
+    border: none;
+    outline: none;
+  }
+}

@@ -106,17 +106,17 @@ ol {
   margin: 0;
 }
 
-// [data-loading='true'] {
-//   pointer-events: none;
-//   user-select: none;
+[data-loading='true'] {
+  pointer-events: none;
+  user-select: none;
 
-//   [data-loading='inherit'] {
-//     background-color: $LOADING-BACKGROUND;
-//     border-radius: 4px;
+  [data-loading='inherit'] {
+    background-color: $LOADING-BACKGROUND;
+    border-radius: 4px;
 
-//     & > * {
-//       visibility: hidden;
-//       opacity: 0;
-//     }
-//   }
-// }
+    & > * {
+      visibility: hidden;
+      opacity: 0;
+    }
+  }
+}

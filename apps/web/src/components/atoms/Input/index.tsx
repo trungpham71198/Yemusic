@@ -1,8 +1,7 @@
-import React, { FC } from 'react';
-
-import { mapClassNameModifiers } from '@utils/index';
-
 import './style.scss';
+
+import classNames from 'classnames';
+import React from 'react';
 
 export interface InputProps
   extends Omit<
@@ -14,37 +13,42 @@ export interface InputProps
   > {
   fullWidth?: boolean;
   prefix?: React.ReactNode;
-  shape?: 'default' | 'round';
+  shape?: 'round';
   suffix?: React.ReactNode;
 }
 
-export const Input: FC<InputProps> = ({
-  className,
-  disabled,
-  fullWidth,
-  prefix,
-  shape = 'default',
-  suffix,
-  ...otherProps
-}) => {
-  return (
-    <div
-      className={mapClassNameModifiers(
-        'a-input-group',
-        disabled && 'disabled',
-        fullWidth && 'full-width',
-        shape
-      )}
-    >
-      {prefix && <span className='a-input-group_addon -prefix'>{prefix}</span>}
-      <input
-        className='a-input-group_input'
-        disabled={disabled}
-        {...otherProps}
-      />
-      {suffix && <span className='a-input-group_addon -suffix'>{suffix}</span>}
-    </div>
-  );
-};
+export const Input = React.forwardRef(
+  (props: InputProps, ref?: React.ForwardedRef<HTMLInputElement>) => {
+    const {
+      className,
+      disabled,
+      fullWidth,
+      prefix,
+      shape,
+      suffix,
+      ...otherProps
+    } = props;
+    return (
+      <div
+        className={classNames(
+          'a-input-group',
+          disabled && '-disabled',
+          fullWidth && '-full-width',
+          shape && `-${shape}`,
+          className
+        )}
+      >
+        {prefix && <div className='a-input-group_addon -prefix'>{prefix}</div>}
+        <input
+          ref={ref}
+          className='a-input-group_input'
+          disabled={disabled}
+          {...otherProps}
+        />
+        {suffix && <div className='a-input-group_addon -suffix'>{suffix}</div>}
+      </div>
+    );
+  }
+);
 
 export default Input;
