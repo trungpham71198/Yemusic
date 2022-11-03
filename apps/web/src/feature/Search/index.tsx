@@ -99,6 +99,8 @@ const Search = () => {
     [handleGetSongByKeyword, keyword]
   );
 
+  useEffect(() => () => setListSongs([]), []);
+
   return (
     <OSearch
       loading={isSearching}

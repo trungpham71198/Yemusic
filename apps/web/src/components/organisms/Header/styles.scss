@@ -1,0 +1,41 @@
+.o-header {
+  $logo-width: 36px;
+  $title-width: 100px;
+  $btn-size: 32px;
+
+  background-color: $BODY-BACKGROUND;
+  @apply flex justify-between px-5 h-14 shadow-lg;
+
+  & > a > h1 {
+    width: #{$title-width};
+    min-width: #{$title-width};
+    color: $PRIMARY-TEXT;
+    @apply text-2xl text-center font-bold max-sm:hidden;
+  }
+
+  .logo {
+    width: #{$logo-width};
+    min-width: #{$logo-width};
+    height: 40px;
+  }
+
+  .wrap-search {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    width: calc(100% - #{$logo-width} - #{$title-width} - #{$btn-size});
+
+    & > div {
+      margin: auto;
+    }
+  }
+
+  &_btn {
+    width: #{$btn-size};
+    min-width: #{$btn-size};
+    height: #{$btn-size};
+    border-radius: 50%;
+    background-color: white;
+    margin-top: calc(3.5rem / 2 - (#{$btn-size} / 2));
+  }
+}

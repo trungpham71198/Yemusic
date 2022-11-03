@@ -1,61 +1,28 @@
+import './styles.scss';
+
+import logoSrc from '@assets/images/logo.png';
 import Button from '@components/atoms/Button';
-import Icon from '@components/atoms/Icon';
+import Search from '@feature/Search';
 import type { FC } from 'react';
-import { useContext } from 'react';
-//import { actionSetTheme, DisplayContext } from '@domains/display';
 import { Link } from 'react-router-dom';
 
-const theme = 'light';
+// const theme = 'light';
 
-export const MobileHeader: FC = () => {
-  // const { theme } = useContext(DisplayContext);
-  const handleToggleTheme = () => {
-    // actionSetTheme(theme === 'light' ? 'dark' : 'light');
-  };
-
+const Header: FC = () => {
   return (
-    <div className='c-app-default_header -mobile'>
-      <Link to='/' className='c-app-default_header_logo'>
-        <Icon iconName='logo' />
+    <header className='o-header'>
+      <Link to='/' className='flex items-center w-max'>
+        <img src={logoSrc} alt='Yemusic' className='logo' />
         <h1>Yemusic</h1>
       </Link>
 
-      <div className='c-app-default_header_action'>
-        <Button
-          prefix={<Icon iconName='clock' />}
-          shape='circle'
-          onClick={handleToggleTheme}
-        />
+      <div className='wrap-search'>
+        <Search />
       </div>
-    </div>
+
+      <Button className='o-header_btn' />
+    </header>
   );
 };
 
-export const DesktopHeader: FC = () => {
-  return (
-    <div className='c-app-default_header -desktop'>
-      <Link to='/' className='c-app-default_header_logo'>
-        <Icon iconName='logo' />
-        <h1>Yemusic</h1>
-      </Link>
-    </div>
-  );
-};
-
-export const DesktopHeaderSettings: FC = () => {
-  const handleToggleTheme = () => {
-    //  actionSetTheme(theme === 'light' ? 'dark' : 'light');
-  };
-
-  return (
-    <div className='c-app-default_header_settings'>
-      <div className='c-app-default_header_action'>
-        <Button
-          prefix={<Icon iconName='clock' />}
-          shape='circle'
-          onClick={handleToggleTheme}
-        />
-      </div>
-    </div>
-  );
-};
+export default Header;
