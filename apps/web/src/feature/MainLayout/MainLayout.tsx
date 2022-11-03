@@ -9,7 +9,6 @@ import { PlayerControls } from '@feature/PlayerControls';
 import Search from '@feature/Search';
 import { useViewport } from '@hooks/useViewport';
 import type { FC, ReactNode } from 'react';
-import { useEffect } from 'react';
 
 type TProps = {
   children: ReactNode;

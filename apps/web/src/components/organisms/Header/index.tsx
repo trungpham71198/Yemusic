@@ -1,6 +1,5 @@
-import logoSrc from '@assets/images/logo.png';
 import Button from '@components/atoms/Button';
-import { CircleActiveIcon, CircleIcon } from '@components/atoms/Icon';
+import Icon from '@components/atoms/Icon';
 import type { FC } from 'react';
 import { useContext } from 'react';
 //import { actionSetTheme, DisplayContext } from '@domains/display';
@@ -17,13 +16,13 @@ export const MobileHeader: FC = () => {
   return (
     <div className='c-app-default_header -mobile'>
       <Link to='/' className='c-app-default_header_logo'>
-        <img src={logoSrc} alt='Yemusic' />
+        <Icon iconName='logo' />
         <h1>Yemusic</h1>
       </Link>
 
       <div className='c-app-default_header_action'>
         <Button
-          prefix={theme === 'light' ? <CircleActiveIcon /> : <CircleIcon />}
+          prefix={<Icon iconName='clock' />}
           shape='circle'
           onClick={handleToggleTheme}
         />
@@ -36,7 +35,7 @@ export const DesktopHeader: FC = () => {
   return (
     <div className='c-app-default_header -desktop'>
       <Link to='/' className='c-app-default_header_logo'>
-        <img src={logoSrc} alt='Yemusic' />
+        <Icon iconName='logo' />
         <h1>Yemusic</h1>
       </Link>
     </div>
@@ -52,7 +51,7 @@ export const DesktopHeaderSettings: FC = () => {
     <div className='c-app-default_header_settings'>
       <div className='c-app-default_header_action'>
         <Button
-          prefix={theme === 'light' ? <CircleActiveIcon /> : <CircleIcon />}
+          prefix={<Icon iconName='clock' />}
           shape='circle'
           onClick={handleToggleTheme}
         />

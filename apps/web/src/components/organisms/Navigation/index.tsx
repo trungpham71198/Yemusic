@@ -1,12 +1,6 @@
-import {
-  HeartActiveIcon,
-  HeartIcon,
-  HomeActiveIcon,
-  HomeIcon,
-  SearchIcon,
-} from '@components/atoms/Icon';
+import Icon from '@components/atoms/Icon';
 import Nav from '@components/molecules/Nav';
-import { mapClassNameModifiers } from '@helpers/style';
+import classNames from 'classnames';
 import type { FC } from 'react';
 
 export interface TProps {
@@ -19,28 +13,25 @@ export const Navigation: FC<TProps> = props => {
 
   const navigation = [
     {
-      icon: [<HomeIcon color='inherit' />, <HomeActiveIcon color='primary' />],
+      icon: <Icon iconName='home' />,
       name: 'Home',
       to: '/',
     },
     {
-      icon: [<SearchIcon color='inherit' />, <SearchIcon color='primary' />],
+      icon: <Icon iconName='search' />,
       name: 'Search',
       to: '/search',
       device: 'mobile',
     },
     {
-      icon: [
-        <HeartIcon color='inherit' />,
-        <HeartActiveIcon color='primary' />,
-      ],
+      icon: <Icon iconName='heart' />,
       name: 'Liked Tracks',
       to: '/liked-tracks',
     },
   ];
 
   return (
-    <div className={mapClassNameModifiers('o-navigation', device)}>
+    <div className={classNames('o-navigation', device)}>
       <Nav mode={mode} device={device} navigation={navigation} />
     </div>
   );

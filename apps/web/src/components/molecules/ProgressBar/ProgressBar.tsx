@@ -1,6 +1,6 @@
 import './style.scss';
 
-import { mapClassNameModifiers } from '@helpers/style';
+import classNames from 'classnames';
 import type { FC } from 'react';
 import type React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -82,31 +82,33 @@ export const ProgressBar: FC<ProgressBarProps> = ({
         }
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [max]
+    [max, onChangeValue]
   );
 
-  const handleDragMove = useCallback((e: MouseEvent) => {
-    if (progressBarRef.current) {
-      const { offsetWidth } = progressBarRef.current;
-      const { offsetX } = e;
+  const handleDragMove = useCallback(
+    (e: MouseEvent) => {
+      if (progressBarRef.current) {
+        const { offsetWidth } = progressBarRef.current;
+        const { offsetX } = e;
 
-      setProgressBarTransform(progressBarRef.current, offsetX, offsetWidth);
+        setProgressBarTransform(progressBarRef.current, offsetX, offsetWidth);
 
-      if (onChangeValue) {
-        let newvalue = (offsetX / offsetWidth) * max;
+        if (onChangeValue) {
+          let newvalue = (offsetX / offsetWidth) * max;
 
-        if (newvalue < 0) {
-          newvalue = 0;
+          if (newvalue < 0) {
+            newvalue = 0;
+          }
+          if (newvalue > max) {
+            newvalue = max;
+          }
+
+          onChangeValue(newvalue);
         }
-        if (newvalue > max) {
-          newvalue = max;
-        }
-
-        onChangeValue(newvalue);
       }
-    }
-  }, []);
+    },
+    [max, onChangeValue]
+  );
 
   useEffect(() => {
     if (isPressed) {
@@ -120,13 +122,13 @@ export const ProgressBar: FC<ProgressBarProps> = ({
         window.removeEventListener('mousemove', handleDragMove);
       }
     };
-  }, [isPressed]);
+  }, [handleDragMove, handlePressUp, isPressed]);
 
   return (
     <div
-      className={mapClassNameModifiers(
+      className={classNames(
         'm-progress-bar',
-        isInteractive && 'is-interactive'
+        isInteractive && '-is-interactive'
       )}
       onMouseDown={handlePressDown}
       ref={progressBarRef}

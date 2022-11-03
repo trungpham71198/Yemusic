@@ -19,7 +19,7 @@ export interface ButtonProps
   prefix?: ReactNode;
   suffix?: ReactNode;
   fullWidth?: boolean;
-  shape?: 'default' | '-circle';
+  shape?: 'default' | 'circle';
 }
 
 export const Button: FC<ButtonProps> = ({

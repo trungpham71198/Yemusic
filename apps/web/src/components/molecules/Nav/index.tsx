@@ -1,13 +1,13 @@
 import './style.scss';
 
-import { mapClassNameModifiers } from '@helpers/style';
+import classNames from 'classnames';
 import type { FC, ReactNode } from 'react';
 import type React from 'react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export interface INavigation {
-  icon: ReactNode[];
+  icon: ReactNode;
   name: string;
   to: string;
   device?: string;
@@ -61,18 +61,21 @@ export const Nav: FC<NavProps> = ({
 
   const navigations = useMemo(
     () => navigation.filter(nav => !nav.device || nav.device === device),
-    [navigation]
+    [device, navigation]
   );
 
-  const handleChangeItem = useCallback((newSelected: number) => {
-    setSelected(newSelected);
-    selectedRef.current = newSelected;
+  const handleChangeItem = useCallback(
+    (newSelected: number) => {
+      setSelected(newSelected);
+      selectedRef.current = newSelected;
 
-    const link = navigations[newSelected].to;
-    if (link) {
-      navigate(link);
-    }
-  }, []);
+      const link = navigations[newSelected].to;
+      if (link) {
+        navigate(link);
+      }
+    },
+    [navigate, navigations]
+  );
 
   useEffect(() => {
     selectedRef.current = selected;
@@ -87,7 +90,7 @@ export const Nav: FC<NavProps> = ({
         setSelected(index);
       }
     });
-  }, []);
+  }, [location.pathname, navigations]);
 
   useEffect(() => {
     window.addEventListener('resize', () =>
@@ -102,21 +105,19 @@ export const Nav: FC<NavProps> = ({
   }, []);
 
   return (
-    <ul className={mapClassNameModifiers('m-nav', mode)} ref={navRef}>
+    <ul className={classNames('m-nav', '-' + mode)} ref={navRef}>
       {navigations.map((nav, index) => (
         <li
           key={nav.name}
-          className={mapClassNameModifiers(
+          className={classNames(
             'm-nav_item',
-            mode === 'horizontal' ? 'mini' : 'full',
-            index === selected && 'active'
+            mode === 'horizontal' ? '-mini' : '-full',
+            index === selected && '-active'
           )}
           role='button'
           onClick={() => handleChangeItem(index)}
         >
-          <span className='m-nav_item_icon'>
-            {index === selected ? nav.icon[1] : nav.icon[0]}
-          </span>
+          <span className='m-nav_item_icon'>{nav.icon}</span>
           <p className='m-nav_item_name'>{nav.name}</p>
         </li>
       ))}

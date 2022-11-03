@@ -6,16 +6,16 @@
 
   position: relative;
   display: inline-flex;
-  gap: pxtorem(8);
+  gap: rem(8);
   align-items: center;
   justify-content: center;
   width: fit-content;
-  padding: pxtorem(8) pxtorem(16);
+  padding: rem(8) rem(16);
   color: $PRIMARY-TEXT;
   user-select: none;
   background-color: $INTERACTIVE-BACKGROUND;
   border: none;
-  border-radius: pxtorem(4);
+  border-radius: rem(4);
   outline: none;
   transition: all $button-transition-duration;
 
@@ -57,8 +57,8 @@
     text-transform: uppercase;
   }
 
-  &.-circle {
-    padding: pxtorem(8);
+  &.circle {
+    padding: rem(8);
     border-radius: 999px;
   }
 }

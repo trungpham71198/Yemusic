@@ -2,7 +2,7 @@
   $root: &;
 
   &.-is-interactive {
-    padding: pxtorem(4) 0;
+    padding: rem(4) 0;
 
     &:hover,
     &.-is-draging {

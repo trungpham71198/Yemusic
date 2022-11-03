@@ -2,7 +2,7 @@
   $root: &;
 
   display: flex;
-  padding: pxtorem(8);
+  padding: rem(8);
 
   &:hover {
     // background-color: $HOVER_OVERLAY;
@@ -10,8 +10,8 @@
 
   &.-horizontal {
     flex-direction: row;
-    gap: pxtorem(16);
-    border-radius: pxtorem(4);
+    gap: rem(16);
+    border-radius: rem(4);
 
     #{$root}_image {
       $song-card-horizontal-image-width: 40px;
@@ -19,7 +19,7 @@
 
       width: $song-card-horizontal-image-width;
       height: $song-card-horizontal-image-height;
-      border-radius: pxtorem(4);
+      border-radius: rem(4);
     }
 
     #{$root}_time {
@@ -38,9 +38,9 @@
   &.-vertical {
     position: relative;
     flex-direction: column;
-    gap: pxtorem(8);
+    gap: rem(8);
     width: fit-content;
-    border-radius: pxtorem(8);
+    border-radius: rem(8);
 
     &:hover {
       #{$root}_actionlist {
@@ -54,11 +54,11 @@
 
       width: $song-card-vertical-image-width;
       height: $song-card-vertical-image-height;
-      border-radius: pxtorem(8);
+      border-radius: rem(8);
     }
 
     #{$root}_info {
-      gap: pxtorem(4);
+      gap: rem(4);
     }
 
     #{$root}_time {
@@ -79,7 +79,7 @@
     #{$root}_info {
       &_author {
         display: flex;
-        gap: pxtorem(8);
+        gap: rem(8);
         align-items: center;
 
         span {
@@ -88,9 +88,9 @@
           align-items: center;
           width: 2px;
           height: 12px;
-          margin: 0 pxtorem(4);
+          margin: 0 rem(4);
           // background-color: $ACCENT-BACKGROUND;
-          border-radius: pxtorem(1);
+          border-radius: rem(1);
           animation: now-playing 1000ms infinite;
 
           &::before,
@@ -186,7 +186,7 @@
 
   &_actionlist {
     display: flex;
-    gap: pxtorem(16);
+    gap: rem(16);
     align-items: center;
 
     &_item {
@@ -202,12 +202,12 @@
 
   display: flex;
   flex-direction: column;
-  gap: pxtorem(16);
+  gap: rem(16);
 
   &_title {
     display: inline-block;
     width: fit-content;
-    padding: 0 pxtorem(8);
+    padding: 0 rem(8);
 
     h2 {
       // @include text(heading);

@@ -17,12 +17,12 @@
 }
 
 ::-webkit-scrollbar {
-  width: pxtorem(8);
+  width: rem(8);
 }
 
 ::-webkit-scrollbar-thumb {
   // background: $DIVIDER;
-  border-radius: pxtorem(4);
+  border-radius: rem(4);
 }
 
 ::-webkit-scrollbar-track:hover {
@@ -58,12 +58,12 @@ body {
   margin: 0;
   overflow-x: hidden;
   font-family: $FONTFAMILY-BASIC;
-  // color: $SECONDARY-TEXT;
-  // background-color: $BODY-BACKGROUND;
+  color: $SECONDARY-TEXT;
+  background-color: $BODY-BACKGROUND;
 }
 
 p {
-  font-size: pxtorem($FONT-SIZE-HTML-VALUE);
+  font-size: rem($FONT-SIZE-HTML-VALUE);
 
   &:last-child {
     margin-bottom: 0;

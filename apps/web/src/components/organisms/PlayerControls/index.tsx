@@ -1,20 +1,11 @@
 import './style.scss';
 
-import {
-  MoreIcon,
-  PauseActiveIcon,
-  PlayActiveIcon,
-  RepeatIcon,
-  RepeatOneIcon,
-  ShuffleIcon,
-  SkipNextActiveIcon,
-  SkipPreviousActiveIcon,
-} from '@components/atoms/Icon';
+import Icon from '@components/atoms/Icon';
 import ProgressBar from '@components/molecules/ProgressBar';
 import type { IPlayerControls } from '@core/domain/models/song';
-import { mapClassNameModifiers } from '@helpers/style';
 import { useViewport } from '@hooks/useViewport';
 import { HHMMSS } from '@utils/formatTime';
+import classNames from 'classnames';
 import type { FC } from 'react';
 import type React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -90,7 +81,7 @@ export const PlayerControls: FC<IProps> = ({
       setCurrentTime(0);
       setIsPlayed(false);
     }
-  }, [repeatMode]);
+  }, [onEnded, repeatMode]);
 
   const handleToggleMode = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
@@ -152,36 +143,34 @@ export const PlayerControls: FC<IProps> = ({
 
   const renderTypeButton = (type: TRenderButton) => {
     const renderIconMode = {
-      none: <RepeatIcon />,
-      one: <RepeatOneIcon color='primary' />,
-      all: <RepeatIcon color='primary' />,
+      none: <Icon iconName='repeat' key={type} />,
+      one: <Icon iconName='repeat-one' key={type} />,
+      all: <Icon iconName='repeat' key={type} />,
     }[repeatMode];
 
-    const renderType: { [k: string]: IRenderType } = {
+    const renderType: Record<string, IRenderType> = {
       shuffle: {
-        icon: <ShuffleIcon color={isShuffle ? 'primary' : 'secondary'} />,
-        className: 'hidden',
+        icon: <Icon iconName='shuffle' key={type} />,
         onclick: onShuffle,
       },
       previous: {
-        icon: <SkipPreviousActiveIcon />,
+        icon: <Icon iconName='previous' key={type} />,
         onclick: handleSkipPrevious,
       },
       pause: {
-        icon: <PauseActiveIcon />,
+        icon: <Icon iconName='pause' key={type} />,
         onclick: handlePause,
       },
       play: {
-        icon: <PlayActiveIcon />,
+        icon: <Icon iconName='play' key={type} />,
         onclick: handlePlay,
       },
       next: {
-        icon: <SkipNextActiveIcon />,
+        icon: <Icon iconName='next' key={type} />,
         onclick: onNext,
       },
       repeat: {
         icon: renderIconMode,
-        className: 'hidden',
         onclick: handleToggleRepeatMode,
       },
     };
@@ -189,7 +178,7 @@ export const PlayerControls: FC<IProps> = ({
 
     return (
       <button
-        className={mapClassNameModifiers('o-playerControls__item', className)}
+        className={classNames('o-playerControls__item', className)}
         data-loading='inherit'
         onClick={onclick}
         key={type}
@@ -201,7 +190,7 @@ export const PlayerControls: FC<IProps> = ({
 
   return (
     <div
-      className={mapClassNameModifiers('o-playerControls', viewMode, viewport)}
+      className={classNames('o-playerControls', viewMode, viewport)}
       data-loading={isLoading}
       onClick={e => handleToggleMode(e, 'full')}
     >
@@ -225,13 +214,13 @@ export const PlayerControls: FC<IProps> = ({
           role='button'
           onClick={e => handleToggleMode(e, 'mini')}
         >
-          <MoreIcon />
+          <Icon iconName='more' />
         </div>
       </div>
 
       <div className='o-playerControls__image'>
         <div
-          className={mapClassNameModifiers(
+          className={classNames(
             'o-playerControls__inner',
             isPlayed && 'playing'
           )}
