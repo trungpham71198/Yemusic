@@ -1,24 +1,27 @@
 import './style.scss';
 
 import classNames from 'classnames';
-import React from 'react';
+import type {
+  DetailedHTMLProps,
+  ForwardedRef,
+  InputHTMLAttributes,
+  ReactNode,
+} from 'react';
+import { forwardRef } from 'react';
 
 export interface InputProps
   extends Omit<
-    React.DetailedHTMLProps<
-      React.InputHTMLAttributes<HTMLInputElement>,
-      HTMLInputElement
-    >,
+    DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>,
     'prefix'
   > {
   fullWidth?: boolean;
-  prefix?: React.ReactNode;
+  prefix?: ReactNode;
   shape?: 'round';
-  suffix?: React.ReactNode;
+  suffix?: ReactNode;
 }
 
-export const Input = React.forwardRef(
-  (props: InputProps, ref?: React.ForwardedRef<HTMLInputElement>) => {
+export const Input = forwardRef(
+  (props: InputProps, ref?: ForwardedRef<HTMLInputElement>) => {
     const {
       className,
       disabled,

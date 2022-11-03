@@ -1,5 +1,5 @@
-import cls from 'classnames';
-import type { FC } from 'react';
+import classNames from 'classnames';
+import type { FC, SVGProps } from 'react';
 
 import { useDynamicSvgImport } from './useDynamicSvgImport';
 
@@ -33,11 +33,11 @@ type iconName =
 interface IProps {
   iconName: iconName;
   wrapperStyle?: string;
-  svgProp?: React.SVGProps<SVGSVGElement>;
+  svgProps?: SVGProps<SVGSVGElement>;
 }
 
 const Icon: FC<IProps> = (props: IProps) => {
-  const { iconName, wrapperStyle, svgProp } = props;
+  const { iconName, wrapperStyle, svgProps } = props;
   const { loading, SvgIcon } = useDynamicSvgImport(iconName);
 
   return (
@@ -46,7 +46,10 @@ const Icon: FC<IProps> = (props: IProps) => {
         <div className='rounded-full bg-slate-400 animate-pulse h-8 w-8'></div>
       )}
       {SvgIcon && (
-        <SvgIcon className={cls('w-6 h-6', wrapperStyle)} {...svgProp} />
+        <SvgIcon
+          className={classNames('w-6 h-6', wrapperStyle)}
+          {...svgProps}
+        />
       )}
     </>
   );

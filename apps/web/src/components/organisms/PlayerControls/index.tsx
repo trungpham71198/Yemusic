@@ -17,7 +17,7 @@ import { useViewport } from '@hooks/useViewport';
 import { HHMMSS } from '@utils/formatTime';
 import type { FC } from 'react';
 import type React from 'react';
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export type IViewMode = 'full' | 'mini';
 export type IRepeatMode = 'none' | 'one' | 'all';

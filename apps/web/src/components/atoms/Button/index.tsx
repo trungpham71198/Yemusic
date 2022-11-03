@@ -1,21 +1,25 @@
-import React, { FC } from 'react';
-
-import { mapClassNameModifiers } from '@utils/index';
-
 import './style.scss';
+
+import classNames from 'classnames';
+import type {
+  ButtonHTMLAttributes,
+  DetailedHTMLProps,
+  FC,
+  ReactNode,
+} from 'react';
 
 export interface ButtonProps
   extends Omit<
-    React.DetailedHTMLProps<
-      React.ButtonHTMLAttributes<HTMLButtonElement>,
+    DetailedHTMLProps<
+      ButtonHTMLAttributes<HTMLButtonElement>,
       HTMLButtonElement
     >,
     'prefix'
   > {
-  prefix?: React.ReactNode;
-  suffix?: React.ReactNode;
+  prefix?: ReactNode;
+  suffix?: ReactNode;
   fullWidth?: boolean;
-  shape?: 'default' | 'circle';
+  shape?: 'default' | '-circle';
 }
 
 export const Button: FC<ButtonProps> = ({
@@ -30,11 +34,11 @@ export const Button: FC<ButtonProps> = ({
 }) => {
   return (
     <button
-      className={mapClassNameModifiers(
+      className={classNames(
         'a-button',
         shape,
-        fullWidth && 'full-width',
-        disabled && 'disabled'
+        fullWidth && '-full-width',
+        disabled && '-disabled'
       )}
       {...otherProps}
     >
