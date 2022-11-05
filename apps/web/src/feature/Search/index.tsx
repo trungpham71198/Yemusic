@@ -64,6 +64,8 @@ const Search = () => {
 
   const handleGetSongByKeyword = useCallback(
     async (keyword: string, config?: AxiosRequestConfig) => {
+      if (!keyword) return;
+
       setIsSearching(true);
 
       try {
