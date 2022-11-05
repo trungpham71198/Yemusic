@@ -4,13 +4,13 @@
   $btn-size: 32px;
 
   background-color: $BODY-BACKGROUND;
-  @apply flex justify-between px-5 h-14 shadow-lg;
+  @apply flex justify-between items-center px-5 h-14 shadow-lg;
 
   & > a > h1 {
     width: #{$title-width};
     min-width: #{$title-width};
     color: $PRIMARY-TEXT;
-    @apply text-2xl text-center font-bold max-sm:hidden;
+    @apply text-2xl text-center font-bold;
   }
 
   .logo {
@@ -20,13 +20,16 @@
   }
 
   .wrap-search {
+    position: relative;
     display: flex;
     justify-content: center;
     flex: 1;
+
+    padding: 0 rem(16);
     width: calc(100% - #{$logo-width} - #{$title-width} - #{$btn-size});
 
     & > div {
-      margin: auto;
+      width: 100%;
     }
   }
 
@@ -36,6 +39,5 @@
     height: #{$btn-size};
     border-radius: 50%;
     background-color: white;
-    margin-top: calc(3.5rem / 2 - (#{$btn-size} / 2));
   }
 }
