@@ -16,7 +16,6 @@ export type IRepeatMode = 'none' | 'one' | 'all';
 export interface IProps {
   dataSource: IPlayerControls;
   isLoading: boolean;
-  isShuffle: boolean;
   onEnded: () => void;
   onShuffle: () => void;
   onNext: () => void;
@@ -40,7 +39,6 @@ interface IRenderType {
 export const PlayerControls: FC<IProps> = ({
   dataSource,
   isLoading,
-  isShuffle,
   onEnded,
   onShuffle,
   onNext,
@@ -52,6 +50,7 @@ export const PlayerControls: FC<IProps> = ({
   const { viewport } = useViewport();
 
   const [viewMode, setViewMode] = useState<IViewMode>('full');
+  const [isShuffle, setIsShuffle] = useState(false);
   const [repeatMode, setRepeatMode] = useState<IRepeatMode>('none');
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -105,6 +104,11 @@ export const PlayerControls: FC<IProps> = ({
     }
   }, []);
 
+  const handleToggleSuffle = useCallback(() => {
+    setIsShuffle(prev => !prev);
+    onShuffle();
+  }, [onShuffle]);
+
   const handleToggleRepeatMode = useCallback(() => {
     const newRepeatMode =
       repeatMode === 'none' ? 'all' : repeatMode === 'all' ? 'one' : 'none';
@@ -143,34 +147,41 @@ export const PlayerControls: FC<IProps> = ({
 
   const renderTypeButton = (type: TRenderButton) => {
     const renderIconMode = {
-      none: <Icon iconName='repeat' key={type} />,
-      one: <Icon iconName='repeat-one' key={type} />,
-      all: <Icon iconName='repeat' key={type} />,
+      none: <Icon iconName='repeat' />,
+      one: <Icon iconName='repeat-one' svgProps={{ stroke: '#26c0ae' }} />,
+      all: <Icon iconName='repeat' svgProps={{ stroke: '#26c0ae' }} />,
     }[repeatMode];
 
     const renderType: Record<string, IRenderType> = {
       shuffle: {
-        icon: <Icon iconName='shuffle' key={type} />,
-        onclick: onShuffle,
+        icon: (
+          <Icon
+            iconName='shuffle'
+            svgProps={{ stroke: isShuffle ? '#26c0ae' : 'none' }}
+          />
+        ),
+        className: 'shuffle',
+        onclick: handleToggleSuffle,
       },
       previous: {
-        icon: <Icon iconName='previous' key={type} />,
+        icon: <Icon iconName='previous' />,
         onclick: handleSkipPrevious,
       },
       pause: {
-        icon: <Icon iconName='pause' key={type} />,
+        icon: <Icon iconName='pause' />,
         onclick: handlePause,
       },
       play: {
-        icon: <Icon iconName='play' key={type} />,
+        icon: <Icon iconName='play' />,
         onclick: handlePlay,
       },
       next: {
-        icon: <Icon iconName='next' key={type} />,
+        icon: <Icon iconName='next' />,
         onclick: onNext,
       },
       repeat: {
         icon: renderIconMode,
+        className: 'repeat',
         onclick: handleToggleRepeatMode,
       },
     };

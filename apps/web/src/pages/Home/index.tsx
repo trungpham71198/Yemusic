@@ -101,7 +101,7 @@ const Home: FC = () => {
 
   return (
     <div className='p-home'>
-      {/* <SongCardList title='Top 30' viewMode='list' isLoading={isLoading}>
+      <SongCardList title='Top 30' viewMode='list' isLoading={isLoading}>
         {playListTrending?.map(song => (
           <SongCard
             key={song.yId}
@@ -116,7 +116,7 @@ const Home: FC = () => {
             onClickDownload={() => handleDownloadSong(song.yId, song.title)}
           />
         ))}
-      </SongCardList> */}
+      </SongCardList>
     </div>
   );
 };

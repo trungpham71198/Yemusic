@@ -3,7 +3,7 @@ import type { FC, SVGProps } from 'react';
 
 import { useDynamicSvgImport } from './useDynamicSvgImport';
 
-type iconName =
+export type IconName =
   | 'arrow-left-circle'
   | 'arrow-left'
   | 'clock'
@@ -31,7 +31,7 @@ type iconName =
   | 'volume-low';
 
 interface IProps {
-  iconName: iconName;
+  iconName: IconName;
   wrapperStyle?: string;
   svgProps?: SVGProps<SVGSVGElement>;
 }

@@ -1,6 +1,6 @@
 import './style.scss';
 
-import { mapClassNameModifiers } from '@helpers/style';
+import classNames from 'classnames';
 import type { FC, ReactNode } from 'react';
 import type React from 'react';
 import {
@@ -114,7 +114,7 @@ export const SongCardList: FC<SongCardListProps> = ({
 
   return (
     <div
-      className={mapClassNameModifiers('o-song-card-list', viewMode)}
+      className={classNames('o-song-card-list', viewMode)}
       data-loading={isLoading}
     >
       {title && (

@@ -7,9 +7,14 @@ import type { AppRoute } from './type';
 
 const routes: AppRoute[] = [
   {
-    name: 'Home page',
+    name: 'Home',
     path: ROUTE.Home,
     element: lazy(() => import('../pages/Home')),
+  },
+  {
+    name: 'Liked Track',
+    path: ROUTE.LikeTrack,
+    element: lazy(() => import('../pages/LikeTrack')),
   },
 ];
 

@@ -1,11 +1,7 @@
 import './style.scss';
 
-import {
-  DownloadIcon,
-  HeartActiveIcon,
-  HeartIcon,
-} from '@components/atoms/Icon';
-import { mapClassNameModifiers } from '@helpers/style';
+import Icon from '@components/atoms/Icon';
+import classNames from 'classnames';
 import type { FC } from 'react';
 import type React from 'react';
 
@@ -52,7 +48,7 @@ export const SongCard: FC<IProps> = ({
 
   return (
     <div
-      className={mapClassNameModifiers(
+      className={classNames(
         'o-song-card',
         direction,
         isPlaying && 'is-playing'
@@ -85,7 +81,10 @@ export const SongCard: FC<IProps> = ({
           role='button'
           onClick={handleClickLike}
         >
-          {isLiked ? <HeartActiveIcon color='primary' /> : <HeartIcon />}
+          <Icon
+            iconName='heart'
+            svgProps={{ stroke: isLiked ? '#26c0ae' : '#B0B0B0' }}
+          />
         </span>
         <span
           className='o-song-card_actionlist_item'
@@ -93,7 +92,7 @@ export const SongCard: FC<IProps> = ({
           role='button'
           onClick={handleClickDownload}
         >
-          <DownloadIcon />
+          <Icon iconName='download' />
         </span>
       </div>
     </div>

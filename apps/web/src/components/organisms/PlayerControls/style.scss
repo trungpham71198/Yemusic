@@ -23,7 +23,7 @@
   &.mini {
     gap: rem(16);
     align-items: center;
-    // padding: rem(8) rem(8) rem(12);
+    padding: rem(8) rem(8) rem(12);
 
     #{$root}__header {
       display: none;
@@ -57,7 +57,8 @@
       gap: rem(16);
 
       #{$root}__item {
-        &.hidden {
+        &.repeat,
+        &.shuffle {
           display: none;
         }
       }

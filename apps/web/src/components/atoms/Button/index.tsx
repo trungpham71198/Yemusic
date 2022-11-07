@@ -38,7 +38,8 @@ export const Button: FC<ButtonProps> = ({
         'a-button',
         shape,
         fullWidth && '-full-width',
-        disabled && '-disabled'
+        disabled && '-disabled',
+        className
       )}
       {...otherProps}
     >

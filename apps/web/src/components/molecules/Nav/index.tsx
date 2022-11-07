@@ -1,13 +1,15 @@
 import './style.scss';
 
+import type { IconName } from '@components/atoms/Icon';
+import Icon from '@components/atoms/Icon';
 import classNames from 'classnames';
-import type { FC, ReactNode } from 'react';
+import type { FC } from 'react';
 import type React from 'react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 export interface INavigation {
-  icon: ReactNode;
+  icon: IconName;
   name: string;
   to: string;
   device?: string;
@@ -117,7 +119,12 @@ export const Nav: FC<NavProps> = ({
           role='button'
           onClick={() => handleChangeItem(index)}
         >
-          <span className='m-nav_item_icon'>{nav.icon}</span>
+          <span className='m-nav_item_icon'>
+            <Icon
+              iconName={nav.icon}
+              svgProps={{ stroke: index === selected ? '#26c0ae' : '#B0B0B0' }}
+            />
+          </span>
           <p className='m-nav_item_name'>{nav.name}</p>
         </li>
       ))}

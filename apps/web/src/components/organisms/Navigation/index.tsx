@@ -1,4 +1,4 @@
-import Icon from '@components/atoms/Icon';
+import type { INavigation } from '@components/molecules/Nav';
 import Nav from '@components/molecules/Nav';
 import classNames from 'classnames';
 import type { FC } from 'react';
@@ -11,20 +11,20 @@ export interface TProps {
 export const Navigation: FC<TProps> = props => {
   const { device = 'desktop', mode = 'vertical' } = props;
 
-  const navigation = [
+  const navigation: INavigation[] = [
     {
-      icon: <Icon iconName='home' />,
+      icon: 'home',
       name: 'Home',
       to: '/',
     },
     {
-      icon: <Icon iconName='search' />,
+      icon: 'search',
       name: 'Search',
       to: '/search',
       device: 'mobile',
     },
     {
-      icon: <Icon iconName='heart' />,
+      icon: 'heart',
       name: 'Liked Tracks',
       to: '/liked-tracks',
     },
