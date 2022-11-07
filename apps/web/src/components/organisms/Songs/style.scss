@@ -1,132 +1,91 @@
 .o-song-card {
   $root: &;
-
-  display: flex;
-  padding: rem(8);
+  @apply flex p-2;
 
   &:hover {
     background-color: $HOVER_OVERLAY;
   }
 
   &.horizontal {
-    flex-direction: row;
-    gap: rem(16);
-    border-radius: rem(4);
+    @apply flex-row gap-4 rounded;
 
     #{$root}_image {
-      $song-card-horizontal-image-width: 40px;
-      $song-card-horizontal-image-height: 40px;
-
-      width: $song-card-horizontal-image-width;
-      height: $song-card-horizontal-image-height;
-      min-width: $song-card-horizontal-image-width;
-      min-height: $song-card-horizontal-image-height;
-      border-radius: rem(4);
+      @apply w-10 h-10 min-w-[40px] max-h-[40px] rounded;
     }
 
     #{$root}_time {
-      min-width: 64px;
-      margin: auto;
-      text-align: center;
+      @apply min-w-[64px] m-auto text-center;
 
       time {
         @include text(caption);
-
-        user-select: none;
+        @apply select-none;
       }
     }
   }
 
   &.vertical {
-    position: relative;
-    flex-direction: column;
-    gap: rem(8);
-    width: fit-content;
-    border-radius: rem(8);
+    @apply relative flex-col gap-2 w-fit rounded;
 
     &:hover {
       #{$root}_actionlist {
-        visibility: visible;
+        @apply visible;
       }
     }
 
     #{$root}_image {
-      $song-card-vertical-image-width: 200px;
-      $song-card-vertical-image-height: 200px;
-
-      width: $song-card-vertical-image-width;
-      height: $song-card-vertical-image-height;
-      border-radius: rem(8);
+      @apply w-[200px] h-[200px] rounded;
     }
 
     #{$root}_info {
-      gap: rem(4);
+      @apply gap-1;
     }
 
     #{$root}_time {
-      display: none;
+      @apply hidden;
     }
 
     #{$root}_actionlist {
-      $song-card-actionlist-top: calc(200px - 24px);
-
-      position: absolute;
-      top: $song-card-actionlist-top;
-      right: 16px;
-      visibility: hidden;
+      @apply absolute right-4 top-[calc(200px-24px)] invisible;
     }
   }
 
   &.is-playing {
     #{$root}_info {
       &_author {
-        display: flex;
-        gap: rem(8);
-        align-items: center;
+        @apply flex gap-2 items-center;
 
         span {
-          position: relative;
-          display: flex;
-          align-items: center;
-          width: 2px;
-          height: 12px;
-          margin: 0 rem(4);
+          @apply relative flex items-center w-[2px] h-3 mx-1 rounded-[1px] animate-[now-playing_1000ms_infinite];
           background-color: $ACCENT-BACKGROUND;
-          border-radius: rem(1);
           animation: now-playing 1000ms infinite;
 
           &::before,
           &::after {
-            position: absolute;
-            display: block;
-            width: 2px;
-            height: 6px;
-            content: '';
+            @apply absolute block w-[2px] h-[6px] content-[''] rounded-sm;
             background-color: $ACCENT-BACKGROUND;
-            border-radius: 1px;
             animation: now-playing 1000ms infinite;
             animation-delay: 500ms;
           }
 
           &::before {
-            left: -4px;
+            @apply -left-[4px];
           }
 
           &::after {
-            right: -4px;
+            @apply -right-[4px];
           }
 
           @keyframes now-playing {
             0% {
-              height: 6px;
+              @apply h-[6px];
             }
 
             50% {
-              height: 12px;
+              @apply h-3;
             }
 
             100% {
-              height: 6px;
+              @apply h-[6px];
             }
           }
         }
@@ -139,67 +98,50 @@
   }
 
   &_image {
-    position: relative;
-    overflow: hidden;
+    @apply relative overflow-hidden;
     border: 1px solid $DIVIDER;
 
     &::before {
-      position: absolute;
-      inset: 0;
-      content: '';
+      @apply absolute inset-0 content-[''];
     }
 
     img {
-      width: 100%;
-      height: 100%;
+      @apply w-full h-full;
     }
   }
 
   &_info {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: space-between;
+    @apply flex flex-col flex-grow justify-between;
 
     &_title {
-      width: fit-content;
-      min-width: 25%;
+      @apply w-fit min-w-[25%];
 
       h4 {
         @include text(body);
-        cursor: pointer;
-        display: inline-block;
-        margin: 0;
+        @apply cursor-pointer inline-block m-0 overflow-hidden;
         color: $PRIMARY-TEXT;
 
         display: -webkit-box;
-        -webkit-line-clamp: 2;
+        -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
-        overflow: hidden;
       }
     }
 
     &_author {
-      width: fit-content;
-      min-width: 20%;
+      @apply w-fit min-w-[20%];
 
       p {
         @include text(caption);
-
-        margin: 0;
+        @apply m-0;
       }
     }
   }
 
   &_actionlist {
-    display: flex;
-    gap: rem(16);
-    align-items: center;
+    @apply flex gap-4 items-center;
 
     &_item {
-      width: 24px;
-      height: 24px;
-      overflow: hidden;
+      @apply w-6 h-6 overflow-hidden;
     }
   }
 }
@@ -207,26 +149,20 @@
 .o-song-card-list {
   $root: &;
 
-  display: flex;
-  flex-direction: column;
-  gap: rem(16);
+  @apply flex flex-col gap-4;
 
   &_title {
-    display: inline-block;
-    width: fit-content;
-    padding: 0 rem(8);
+    @apply inline-block w-fit px-2;
 
     h2 {
       @include text(heading);
-
-      margin: 0;
+      @apply m-0;
       color: $PRIMARY-TEXT;
     }
   }
 
   #{$root}_content {
-    height: calc(100vh - 140px);
-    overflow: auto;
+    @apply h-[calc(100vh-140px)] overflow-auto;
   }
 
   &.-grid {
@@ -236,14 +172,12 @@
       scrollbar-width: none;
 
       &::-webkit-scrollbar {
-        display: none;
+        @apply hidden;
       }
     }
 
     #{$root}_content_inner {
-      display: flex;
-      width: 100%;
-      user-select: none;
+      @apply flex w-full select-none;
     }
   }
 }
@@ -253,14 +187,13 @@
     $root: &;
 
     #{$root}_content {
-      height: calc(100vh - 215px);
-      overflow: auto;
+      @apply h-[calc(100vh-215px)] overflow-auto;
     }
 
     &_info {
       &_title {
         h4 {
-          font-size: 12px;
+          @apply text-xs;
         }
       }
     }

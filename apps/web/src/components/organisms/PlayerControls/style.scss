@@ -1,111 +1,86 @@
 .o-playerControls {
   $root: &;
   background-color: $PLAYER-CONTROLS-BACKGROUND;
-  position: relative;
-  display: flex;
+  @apply relative flex;
 
   &.mobile {
     background-color: $PLAYER-CONTROLS-BACKGROUND;
 
     &.full {
-      position: fixed;
-      inset: 0;
-      z-index: 99;
-      height: 100%;
-      padding: rem(16);
+      @apply fixed inset-0 z-50 h-full p-4;
     }
   }
 
   &.desktop {
-    padding: rem(16);
+    @apply p-4;
   }
 
   &.mini {
-    gap: rem(16);
-    align-items: center;
-    padding: rem(8) rem(8) rem(12);
+    @apply gap-4 items-center py-2 px-3;
 
     #{$root}__header {
-      display: none;
+      @apply hidden;
     }
 
     #{$root}__image {
       #{$root}__inner {
-        $player-controls-mini-image-width: 40px;
-
-        width: $player-controls-mini-image-width;
+        @apply w-10;
       }
     }
 
     #{$root}__time {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      left: 0;
+      @apply absolute bottom-0 left-0;
 
       #{$root}__value {
-        display: none;
+        @apply hidden;
       }
     }
 
     #{$root}__info {
-      flex-grow: 1;
-      overflow: hidden;
+      @apply flex-grow overflow-hidden;
     }
 
     #{$root}__actions {
-      gap: rem(16);
+      @apply gap-4;
 
       #{$root}__item {
         &.repeat,
         &.shuffle {
-          display: none;
+          @apply hidden;
         }
       }
     }
   }
 
   &.full {
-    flex-direction: column;
-    gap: rem(16);
-    height: 100%;
+    @apply flex-col gap-4 h-full;
 
     #{$root}__header {
-      display: flex;
-      justify-content: space-between;
+      @apply flex justify-between;
 
       #{$root}__title {
-        width: fit-content;
+        @apply w-fit;
 
         h2 {
           @include text(heading);
-
-          margin: 0;
+          @apply m-0;
         }
       }
     }
 
     #{$root}__image {
-      display: flex;
-      flex-grow: 1;
-      align-items: center;
-      justify-content: center;
-      padding: rem(32);
+      @apply flex flex-grow items-center justify-center p-8;
 
       #{$root}__inner {
-        width: 100%;
+        @apply w-full;
       }
     }
 
     #{$root}__time {
-      display: flex;
-      flex-wrap: wrap;
-      gap: rem(4);
-      justify-content: space-between;
-      width: 100%;
+      @apply flex flex-wrap gap-1 justify-between w-full;
 
       #{$root}__progress-bar {
-        width: 100%;
+        @apply w-full;
       }
 
       #{$root}__value {
@@ -118,86 +93,56 @@
     }
 
     #{$root}__actions {
-      justify-content: space-between;
+      @apply justify-between;
     }
   }
 
   &__image {
     #{$root}__inner {
-      $player-controls-image-max-width: 450px;
-      $player-controls-image-max-height: 450px;
-      $player-controls-image-spin-animation-duration: 12000ms;
-
-      max-width: $player-controls-image-max-width;
-      max-height: $player-controls-image-max-height;
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-      pointer-events: none;
-      user-select: none;
-      border-radius: 999px !important;
+      @apply max-w-[450px] max-h-[450px] aspect-square overflow-hidden pointer-events-none select-none rounded-full;
 
       &.playing {
         animation-name: spin;
-        animation-duration: $player-controls-image-spin-animation-duration;
+        animation-duration: 12000ms;
         animation-timing-function: linear;
         animation-iteration-count: infinite;
       }
 
       img {
-        width: 100%;
-        height: 100%;
+        @apply w-full h-full;
       }
     }
   }
 
   &__info {
-    display: flex;
-    flex-direction: column;
-    gap: rem(4);
+    @apply flex flex-col gap-1;
 
     #{$root}__name {
-      display: inline-block;
-      overflow: hidden;
+      @apply inline-block overflow-hidden;
 
       h3 {
         @include text(body);
-
-        margin: 0;
-        overflow: hidden;
+        @apply m-0 overflow-hidden text-ellipsis whitespace-nowrap;
         color: $PRIMARY-TEXT;
-        text-overflow: ellipsis;
-        white-space: nowrap;
       }
     }
 
     #{$root}__author {
-      display: inline-block;
+      @apply inline-block;
 
       p {
         @include text(caption);
-
-        margin: 0;
-        overflow: hidden;
+        @apply m-0 overflow-hidden text-ellipsis whitespace-nowrap;
         color: $SECONDARY-TEXT;
-        text-overflow: ellipsis;
-        white-space: nowrap;
       }
     }
   }
 
   &__actions {
-    display: flex;
+    @apply flex;
 
     #{$root}__item {
-      $player-controls-actionlist-item-width: 24px;
-      $player-controls-actionlist-item-height: 24px;
-
-      width: $player-controls-actionlist-item-width;
-      height: $player-controls-actionlist-item-height;
-      padding: 0;
-      background-color: transparent;
-      border: 0;
-      outline: 0;
+      @apply w-6 h-6 p-0 bg-transparent border-0 outline-0;
     }
   }
 }

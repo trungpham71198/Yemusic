@@ -5,6 +5,8 @@ enum Viewport {
   DESKTOP = 'desktop',
 }
 
+type TViewPort = { viewport: Viewport };
+
 const getDeviceConfig = (width: number): Viewport => {
   if (width <= 1024) {
     return Viewport.PHONE;
@@ -13,8 +15,7 @@ const getDeviceConfig = (width: number): Viewport => {
   }
 };
 
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const useViewport = () => {
+export const useViewport = (): TViewPort => {
   const [viewport, setViewport] = useState<Viewport>(Viewport.DESKTOP);
   const viewRef = useRef(Viewport.DESKTOP);
 
@@ -36,7 +37,7 @@ export const useViewport = () => {
 
     window.addEventListener('resize', calcInnerWidth);
     return () => window.removeEventListener('resize', calcInnerWidth);
-  }, []);
+  }, [setCurrentViewport]);
 
   return { viewport };
 };
