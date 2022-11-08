@@ -18,12 +18,6 @@ export const Navigation: FC<TProps> = props => {
       to: '/',
     },
     {
-      icon: 'search',
-      name: 'Search',
-      to: '/search',
-      device: 'mobile',
-    },
-    {
       icon: 'heart',
       name: 'Liked Tracks',
       to: '/liked-tracks',

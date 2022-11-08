@@ -55,7 +55,7 @@
         @apply flex gap-2 items-center;
 
         span {
-          @apply relative flex items-center w-[2px] h-3 mx-1 rounded-[1px] animate-[now-playing_1000ms_infinite];
+          @apply relative flex items-center w-[2px] h-3 mx-1 rounded-[1px];
           background-color: $ACCENT-BACKGROUND;
           animation: now-playing 1000ms infinite;
 

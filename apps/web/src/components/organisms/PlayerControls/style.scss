@@ -29,7 +29,7 @@
     }
 
     #{$root}__time {
-      @apply absolute bottom-0 left-0;
+      @apply absolute bottom-0 left-0 w-full;
 
       #{$root}__value {
         @apply hidden;

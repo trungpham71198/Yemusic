@@ -2,7 +2,7 @@
   $root: &;
 
   &.-is-interactive {
-    padding: rem(4) 0;
+    @apply py-1;
 
     &:hover,
     &.-is-draging {
@@ -14,27 +14,19 @@
     }
 
     #{$root}_value {
-      $progress-bar-value-interactive-height: 8px;
-
-      height: $progress-bar-value-interactive-height;
-      border-radius: 999px;
+      @apply h-2 rounded-full;
     }
   }
 
   &_value {
-    $progress-bar-value-height: 2px;
     $progress-bar-current-value-translate-x: calc(
       -100% + var(--progress-bar-transform, 0%)
     );
-
-    position: relative;
-    height: $progress-bar-value-height;
-    overflow: hidden;
+    @apply relative h-[2px] overflow-hidden;
     background-color: $INTERACTIVE-BACKGROUND;
 
     &::before {
-      position: absolute;
-      width: 100%;
+      @apply absolute w-full;
       height: inherit;
       content: '';
       background-color: $CONTRAST-BACKGROUND;
