@@ -5,6 +5,7 @@ import type { InputProps } from '@components/atoms/Input';
 import Input from '@components/atoms/Input';
 import type { ISong } from '@core/domain/models/song';
 import useClickOutside from '@hooks/useClickOutside';
+import { useViewport } from '@hooks/useViewport';
 import debounce from '@utils/debouce';
 import { safelyParseJSON } from '@utils/json';
 import classNames from 'classnames';
@@ -23,7 +24,10 @@ const OSearch: FC<IOSearch> = ({
   listSongs,
   onSearch,
   onClickSong,
+  ...inputProps
 }) => {
+  const { viewport } = useViewport();
+
   const searchRef = useRef<HTMLDivElement>(null);
 
   const [keyword, setKeyword] = useState('');
@@ -62,7 +66,11 @@ const OSearch: FC<IOSearch> = ({
   return (
     <div
       ref={searchRef}
-      className={classNames('o-search', isFocus && '-focus')}
+      className={classNames(
+        'o-search',
+        isFocus && '-focus',
+        viewport === 'mobile' && 'max-w-none'
+      )}
     >
       <Input
         fullWidth
@@ -83,6 +91,7 @@ const OSearch: FC<IOSearch> = ({
         onFocus={() => setIsFocus(true)}
         value={keyword}
         onChange={handleInputChange}
+        {...inputProps}
       />
       <div className={classNames('o-search_body')}>
         {isFocus && (
@@ -96,7 +105,12 @@ const OSearch: FC<IOSearch> = ({
             )}
           </div>
         )}
-        <div className='o-search_list'>
+        <div
+          className={classNames(
+            'o-search_list',
+            viewport === 'mobile' && 'h-[calc(100vh-90px)] max-h-[none]'
+          )}
+        >
           {isFocus &&
             renderedListSongs?.map((item, index) => (
               <div

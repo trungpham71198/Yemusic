@@ -1,3 +1,4 @@
+import Header from '@components/organisms/Header';
 import { MainLayout } from '@feature/MainLayout';
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -16,19 +17,20 @@ const routes: AppRoute[] = [
 export const AppRouter: React.FC = () => {
   return (
     <Router>
-      <MainLayout>
-        <Suspense fallback={null}>
-          <Routes>
-            {routes.map(({ path, element: Element }) => (
-              <Route
-                key={path}
-                path={path}
-                element={React.isValidElement(Element) ? Element : <Element />}
-              />
-            ))}
-          </Routes>
-        </Suspense>
-      </MainLayout>
+      {/* <MainLayout> */}
+      <Suspense fallback={null}>
+        <Header />
+        <Routes>
+          {routes.map(({ path, element: Element }) => (
+            <Route
+              key={path}
+              path={path}
+              element={React.isValidElement(Element) ? Element : <Element />}
+            />
+          ))}
+        </Routes>
+      </Suspense>
+      {/* </MainLayout> */}
     </Router>
   );
 };

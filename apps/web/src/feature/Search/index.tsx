@@ -105,6 +105,7 @@ const Search = () => {
 
   return (
     <OSearch
+      placeholder='Search'
       loading={isSearching}
       listSongs={listSongs}
       onSearch={handleSearch}
