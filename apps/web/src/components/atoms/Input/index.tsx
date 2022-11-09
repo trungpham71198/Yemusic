@@ -3,8 +3,8 @@ import './style.scss';
 import classNames from 'classnames';
 import type {
   DetailedHTMLProps,
-  ForwardedRef,
   InputHTMLAttributes,
+  LegacyRef,
   ReactNode,
 } from 'react';
 import { forwardRef } from 'react';
@@ -21,7 +21,7 @@ export interface InputProps
 }
 
 export const Input = forwardRef(
-  (props: InputProps, ref?: ForwardedRef<HTMLInputElement>) => {
+  (props: InputProps, ref?: LegacyRef<HTMLInputElement>) => {
     const {
       className,
       disabled,

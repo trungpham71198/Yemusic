@@ -64,6 +64,8 @@ const Search = () => {
 
   const handleGetSongByKeyword = useCallback(
     async (keyword: string, config?: AxiosRequestConfig) => {
+      if (!keyword) return;
+
       setIsSearching(true);
 
       try {
@@ -99,8 +101,11 @@ const Search = () => {
     [handleGetSongByKeyword, keyword]
   );
 
+  useEffect(() => () => setListSongs([]), []);
+
   return (
     <OSearch
+      placeholder='Search'
       loading={isSearching}
       listSongs={listSongs}
       onSearch={handleSearch}
