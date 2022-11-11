@@ -1,12 +1,7 @@
-import {
-  DesktopHeader,
-  DesktopHeaderSettings,
-  MobileHeader,
-} from '@components/organisms/Header';
+import Header from '@components/organisms/Header';
 import { Navigation } from '@components/organisms/Navigation';
 import { MainLayout as MainLayoutCommon } from '@components/templates/MainLayout';
 import { PlayerControls } from '@feature/PlayerControls';
-import Search from '@feature/Search';
 import { useViewport } from '@hooks/useViewport';
 import type { FC, ReactNode } from 'react';
 
@@ -30,13 +25,11 @@ export const MainLayout: FC<TProps> = ({ children }) => {
           children,
         },
         desktop: {
-          header: <DesktopHeader />,
-          headerSettings: <DesktopHeaderSettings />,
-          search: <Search />,
+          header: <Header />,
           navigation: <Navigation />,
         },
         mobile: {
-          header: <MobileHeader />,
+          header: <Header />,
           navigation: <Navigation mode='horizontal' device='mobile' />,
         },
       }}

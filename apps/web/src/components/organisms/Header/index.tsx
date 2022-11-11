@@ -55,29 +55,30 @@ const Header: FC = () => {
   return (
     <header className='o-header'>
       <Link to='/' className='flex items-center w-max'>
-        <Icon iconName='logo' wrapperStyle='logo' />
+        <Icon iconName='logo' wrapperStyle='logo mr-4' />
         <h1>Yemusic</h1>
       </Link>
 
-      <div className='wrap-search'>
+      <div className='o-header-search'>
         {viewport === 'desktop' ? (
-          <div className='absolute -top-7'>
+          <div className='absolute -top-7 z-10'>
             <Search />
           </div>
         ) : (
-          <div className='flex justify-end'>
-            <Button shape='circle' onClick={() => setOpenMobileSearch(true)}>
-              <Icon iconName='search' />
-            </Button>
-          </div>
+          <Button shape='circle' onClick={() => setOpenMobileSearch(true)}>
+            <Icon iconName='search' />
+          </Button>
         )}
       </div>
 
       <div
         className={classNames(
-          'fixed top-0 left-0 w-screen h-screen',
+          'fixed top-0 left-0 w-screen h-screen z-50',
           !(isOpenMobileSearch && viewport === 'mobile') && 'hidden'
         )}
+        style={{
+          backgroundColor: 'rgba(var(--modal-background, 24 24 24)/100%)',
+        }}
       >
         <Search />
       </div>

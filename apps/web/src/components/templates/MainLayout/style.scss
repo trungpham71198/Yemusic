@@ -1,23 +1,13 @@
 .t-main-layout {
   $root: &;
 
-  position: relative;
-  display: flex;
-  height: 100vh;
+  @apply relative flex h-screen;
 
   &.-mobile {
-    position: absolute;
-    inset: 0;
-    flex-direction: column;
-
-    #{$root}_header {
-      height: 56px;
-      min-height: 56px;
-    }
+    @apply absolute inset-0 flex-col;
 
     #{$root}_main {
-      position: relative;
-      flex-grow: 1;
+      @apply pt-4 px-4 relative flex-grow;
     }
 
     #{$root}_navigation {
@@ -43,10 +33,8 @@
         display: flex;
         flex-direction: column;
         gap: rem(16);
-        width: 100%;
-        min-width: 360px;
-        max-width: 360px;
-        height: 100%;
+        height: auto;
+        margin-top: auto;
         border-left: 1px solid $DIVIDER;
 
         #{$root}_sidebar_header-settings {
@@ -72,6 +60,7 @@
       flex-grow: 1;
       gap: rem(16);
       min-width: 50%;
+      @apply border-r border-l border-solid border-[#1c1c1c];
 
       &_header {
         height: 72px;
@@ -79,51 +68,14 @@
       }
     }
   }
-}
 
-.c-app-default_header {
-  $root: &;
-
-  display: flex;
-  align-items: center;
-  height: 100%;
-
-  &.-mobile {
-    justify-content: space-between;
-    padding: rem(8);
-
-    #{$root}_logo {
-      gap: rem(8);
-    }
-  }
-
-  &.-desktop {
-    padding: rem(16);
-
-    #{$root}_logo {
-      gap: rem(16);
-    }
-  }
-
-  &_logo {
-    display: flex;
-    align-items: center;
-
-    img {
-      width: 36px;
-      height: 40px;
-    }
-
-    h1 {
-      @include text(heading);
-
-      margin: 0;
-      color: $ACCENT-TEXT;
-    }
-  }
-
-  &_header_settings {
-    position: relative;
+  &_body {
+    display: grid;
+    grid-template-columns:
+      250px
+      min(100%, 100% - 610px)
+      360px;
+    padding-top: 1rem;
   }
 }
 
@@ -143,21 +95,4 @@
   &.-desktop {
     padding: rem(16);
   }
-}
-
-.c-app-default_header_settings {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 100%;
-  padding: rem(16);
-
-  &_action {
-    width: 24px;
-    height: 24px;
-  }
-}
-
-.c-app-default-recent-list {
-  padding: rem(8);
 }

@@ -4,7 +4,7 @@
   $btn-size: 32px;
 
   background-color: $BODY-BACKGROUND;
-  @apply flex justify-between items-center px-5 h-14 shadow-lg;
+  @apply flex justify-between items-center px-5 h-[4.5rem] shadow-lg;
 
   & > a > h1 {
     width: #{$title-width};
@@ -19,14 +19,8 @@
     height: 40px;
   }
 
-  .wrap-search {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    flex: 1;
-
-    padding: 0 rem(16);
-    width: calc(100% - #{$logo-width} - #{$title-width} - #{$btn-size});
+  &-search {
+    @apply ml-auto relative px-4 lg:flex-1;
 
     & > div {
       width: 100%;
