@@ -39,19 +39,6 @@ const Header: FC = () => {
     [viewport]
   );
 
-  useEffect(function closeMobileSearchOnClickSearchIcon() {
-    if (viewport === 'mobile') {
-      const listSearchIconEl = document.getElementsByClassName(
-        'o-search_input_icon'
-      );
-
-      if (listSearchIconEl?.length > 0) {
-        const searchIconEl = listSearchIconEl[0] as HTMLDivElement;
-        searchIconEl.onclick = () => setOpenMobileSearch(false);
-      }
-    }
-  });
-
   return (
     <header className='o-header'>
       <Link to='/' className='flex items-center w-max'>
@@ -80,7 +67,7 @@ const Header: FC = () => {
           backgroundColor: 'rgba(var(--modal-background, 24 24 24)/100%)',
         }}
       >
-        <Search />
+        <Search onCloseMobileSearch={() => setOpenMobileSearch(false)} />
       </div>
 
       <button className='o-header_btn' />
