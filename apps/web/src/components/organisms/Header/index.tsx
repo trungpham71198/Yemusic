@@ -1,10 +1,8 @@
-import Button from '@components/atoms/Button';
 import Icon from '@components/atoms/Icon';
 import Search from '@feature/Search';
 import { useViewport } from '@hooks/useViewport';
-import classNames from 'classnames';
 import type { FC } from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 // const theme = 'light';
@@ -12,17 +10,14 @@ import { Link } from 'react-router-dom';
 const Header: FC = () => {
   const { viewport } = useViewport();
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const [isOpenMobileSearch, setOpenMobileSearch] = useState(false);
 
   useEffect(
     function focusSearchInputOnOpenMobileSearch() {
       if (isOpenMobileSearch) {
-        const listEl = document.getElementsByClassName('a-input-group_input');
-
-        if (listEl?.length > 0) {
-          const searchInputEl = listEl[0] as HTMLInputElement;
-          searchInputEl.focus();
-        }
+        inputRef.current?.focus();
       }
     },
     [isOpenMobileSearch]
@@ -45,27 +40,10 @@ const Header: FC = () => {
       </Link>
 
       <div className='o-header-search'>
-        {viewport === 'desktop' ? (
-          <div className='absolute -top-7 z-10'>
-            <Search />
-          </div>
-        ) : (
-          <Button shape='circle' onClick={() => setOpenMobileSearch(true)}>
-            <Icon iconName='search' />
-          </Button>
-        )}
-      </div>
-
-      <div
-        className={classNames(
-          'fixed top-0 left-0 w-screen h-screen z-50',
-          !(isOpenMobileSearch && viewport === 'mobile') && 'hidden'
-        )}
-        style={{
-          backgroundColor: 'rgba(var(--modal-background, 24 24 24)/100%)',
-        }}
-      >
-        <Search onCloseMobileSearch={() => setOpenMobileSearch(false)} />
+        <Search
+          ref={inputRef}
+          onCloseMobileSearch={() => setOpenMobileSearch(false)}
+        />
       </div>
 
       <button className='o-header_btn' />
