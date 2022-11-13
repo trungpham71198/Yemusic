@@ -1,3 +1,4 @@
+import Button from '@components/atoms/Button';
 import Icon from '@components/atoms/Icon';
 import type { InputProps } from '@components/atoms/Input';
 import Input from '@components/atoms/Input';
@@ -68,13 +69,18 @@ const OSearch: FC<IOSearch> = ({
 
   useClickOutside(searchRef, () => setIsFocus(false));
 
-  return (
+  return viewport === 'mobile' && !isFocus ? (
+    <Button shape='circle' onClick={() => setIsFocus(true)}>
+      <Icon iconName='search' />
+    </Button>
+  ) : (
     <div
       ref={searchRef}
       className={classNames(
         'o-search',
         isFocus && '-focus',
-        viewport === 'mobile' && 'max-w-none'
+        viewport === 'mobile' &&
+          '!fixed top-0 left-0 w-screen  max-w-noneh-screen z-50'
       )}
     >
       <Input
