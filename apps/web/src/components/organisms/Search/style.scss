@@ -1,6 +1,6 @@
 .o-search {
   $root: &;
-  @apply relative w-full min-h-[40px] rounded-lg flex flex-col gap-1 m-auto p-2 z-10;
+  @apply relative w-full min-h-[40px] rounded-lg flex flex-col gap-1 m-auto p-2 z-20;
 
   &.-focus {
     background-color: $MODAL-BACKGROUND;

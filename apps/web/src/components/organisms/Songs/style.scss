@@ -149,10 +149,11 @@
 .o-song-card-list {
   $root: &;
 
-  @apply flex flex-col gap-4 ml-2;
+  @apply ml-2;
 
   &_title {
-    @apply inline-block w-fit px-2;
+    @apply sticky top-0 left-0 z-10 px-2 p-1 pb-3;
+    background-color: $BODY-BACKGROUND;
 
     h2 {
       @include text(heading);
@@ -161,21 +162,7 @@
     }
   }
 
-  #{$root}_content {
-    @apply h-[calc(100vh-140px)] overflow-auto;
-  }
-
   &.-grid {
-    #{$root}_content {
-      overflow: scroll;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-
-      &::-webkit-scrollbar {
-        @apply hidden;
-      }
-    }
-
     #{$root}_content_inner {
       @apply flex w-full select-none;
     }
@@ -185,14 +172,6 @@
 @media screen and (max-width: 1024px) {
   .o-song-card-list {
     $root: &;
-
-    #{$root}_content {
-      @apply h-[calc(100vh-245px)] overflow-auto;
-    }
-
-    .has-song {
-      @apply h-[calc(100vh-185px)];
-    }
 
     &_info {
       &_title {
