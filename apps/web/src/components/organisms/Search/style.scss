@@ -1,6 +1,6 @@
 .o-search {
   $root: &;
-  @apply relative w-full h-full min-h-[40px] rounded-lg flex flex-col gap-1 m-auto p-2;
+  @apply relative w-full min-h-[40px] rounded-lg flex flex-col gap-1 m-auto p-2 z-10;
 
   &.-focus {
     background-color: $MODAL-BACKGROUND;
@@ -8,11 +8,10 @@
   }
 
   &_body {
-    @apply transition-all duration-[400] ease-linear overflow-hidden rounded-lg py-1 w-full z-10;
+    @apply transition-all duration-[400] ease-linear rounded-lg py-1 w-full z-10;
 
     &.-open {
       @apply h-full visible;
-      // max-height: 480px;
     }
   }
 
@@ -114,7 +113,7 @@
 
 @media screen and (min-width: 1024px) {
   .o-search {
-    @apply w-[600px];
+    @apply w-[600px] gap-0;
 
     &_list {
       @apply max-h-[400px];

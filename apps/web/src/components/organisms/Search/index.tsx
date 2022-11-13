@@ -70,7 +70,11 @@ const OSearch: FC<IOSearch> = ({
   useClickOutside(searchRef, () => setIsFocus(false));
 
   return viewport === 'mobile' && !isFocus ? (
-    <Button shape='circle' onClick={() => setIsFocus(true)}>
+    <Button
+      shape='circle'
+      onClick={() => setIsFocus(true)}
+      className='ml-auto mr-4'
+    >
       <Icon iconName='search' />
     </Button>
   ) : (
@@ -104,7 +108,7 @@ const OSearch: FC<IOSearch> = ({
         onChange={handleInputChange}
         {...inputProps}
       />
-      <div className={classNames('o-search_body')}>
+      <div className={classNames('o-search_body', !isFocus && 'hidden')}>
         {isFocus && (
           <div className='o-search_title'>
             {keyword.trim() === '' ? (
