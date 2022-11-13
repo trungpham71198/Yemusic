@@ -1,3 +1,4 @@
+import type { IOSearch } from '@components/organisms/Search';
 import OSearch from '@components/organisms/Search';
 import type { ISong } from '@core/domain/models/song';
 import { SongInstance } from '@core/infras/instances/songInstance';
@@ -7,9 +8,13 @@ import type { AxiosRequestConfig } from 'axios';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { addSong } from 'src/store/reducer/songSlice';
 
+export interface ISearch extends Omit<IOSearch, 'onSearch' | 'onClickSong'> {
+  onCloseMobileSearch?: () => void;
+}
+
 const MAX_LIST = 10;
 
-const Search = () => {
+const Search = ({ onCloseMobileSearch, ...props }: ISearch) => {
   const dispatch = useAppDispatch();
 
   const isAbortRef = useRef<boolean>(false);
@@ -52,6 +57,7 @@ const Search = () => {
 
   const handleClickSong = async (song: ISong) => {
     handleAddRecentSong(song);
+    onCloseMobileSearch && onCloseMobileSearch();
 
     const payloadAudio = await SongInstance.getAudioBySongId(song.yId);
 
@@ -110,6 +116,8 @@ const Search = () => {
       listSongs={listSongs}
       onSearch={handleSearch}
       onClickSong={handleClickSong}
+      onClickBackIcon={onCloseMobileSearch}
+      {...props}
     />
   );
 };

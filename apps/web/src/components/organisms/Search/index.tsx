@@ -7,7 +7,7 @@ import { useViewport } from '@hooks/useViewport';
 import debounce from '@utils/debouce';
 import { safelyParseJSON } from '@utils/json';
 import classNames from 'classnames';
-import type { FC } from 'react';
+import type { FC, MouseEvent } from 'react';
 import { useMemo, useRef, useState } from 'react';
 
 export interface IOSearch extends InputProps {
@@ -15,6 +15,7 @@ export interface IOSearch extends InputProps {
   listSongs?: ISong[];
   onSearch: (value: string) => void;
   onClickSong: (item: ISong) => void;
+  onClickBackIcon?: (e: MouseEvent<HTMLSpanElement>) => void;
 }
 
 const OSearch: FC<IOSearch> = ({
@@ -22,6 +23,7 @@ const OSearch: FC<IOSearch> = ({
   listSongs,
   onSearch,
   onClickSong,
+  onClickBackIcon,
   ...inputProps
 }) => {
   const { viewport } = useViewport();
@@ -30,6 +32,11 @@ const OSearch: FC<IOSearch> = ({
 
   const [keyword, setKeyword] = useState('');
   const [isFocus, setIsFocus] = useState(false);
+
+  const handleClickBackIcon = (e: MouseEvent<HTMLSpanElement>) => {
+    setIsFocus(false);
+    onClickBackIcon && onClickBackIcon(e);
+  };
 
   const onSearchDebounce = useMemo(
     () => debounce((value: string) => onSearch(value)),
@@ -77,7 +84,7 @@ const OSearch: FC<IOSearch> = ({
           <div className='o-search_input_icon' role='button'>
             <span
               className={classNames(!isFocus && 'hidden')}
-              onClick={() => setIsFocus(false)}
+              onClick={handleClickBackIcon}
             >
               <Icon iconName='arrow-left' />
             </span>
