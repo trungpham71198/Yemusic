@@ -1,5 +1,3 @@
-import './style.scss';
-
 import Icon from '@components/atoms/Icon';
 import type { InputProps } from '@components/atoms/Input';
 import Input from '@components/atoms/Input';

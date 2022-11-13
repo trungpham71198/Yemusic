@@ -1,5 +1,3 @@
-import './style.scss';
-
 import Icon from '@components/atoms/Icon';
 import classNames from 'classnames';
 import type { FC } from 'react';

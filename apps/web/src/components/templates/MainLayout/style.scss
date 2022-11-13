@@ -11,71 +11,53 @@
     }
 
     #{$root}_navigation {
-      height: 56px;
-      min-height: 56px;
+      @apply h-14 w-14;
       background-color: $NAVIGATION-BACKGROUND;
     }
   }
 
   &.-desktop {
     #{$root}_sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: rem(16);
+      @apply flex flex-col gap-4;
 
       &.-left {
-        width: 280px;
-        min-width: 280px;
+        @apply w-[280px] min-w-[280px];
         border-right: 1px solid $DIVIDER;
       }
 
       &.-right {
-        display: flex;
-        flex-direction: column;
-        gap: rem(16);
-        height: auto;
-        margin-top: auto;
+        @apply flex flex-col gap-4 h-auto mt-auto;
         border-left: 1px solid $DIVIDER;
 
         #{$root}_sidebar_header-settings {
-          height: 56px;
-          min-height: 56px;
+          @apply h-14 min-h-[14px];
         }
 
         #{$root}_sidebar_recent {
-          flex-grow: 1;
+          @apply flex-grow;
         }
       }
 
       &_header {
-        height: 72px;
-        min-height: 72px;
+        @apply h-[72px] min-h-[72px];
       }
     }
 
     #{$root}_main {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-      gap: rem(16);
-      min-width: 50%;
-      @apply border-r border-l border-solid border-[#1c1c1c];
+      @apply border-r border-l border-solid border-[#1c1c1c] relative flex-col flex-grow gap-4 min-w-[50%];
 
       &_header {
-        height: 72px;
-        min-height: 72px;
+        @apply h-[72px] min-h-[72px];
       }
     }
   }
 
   &_body {
-    display: grid;
+    @apply grid pt-4;
     grid-template-columns:
       250px
       min(100%, 100% - 610px)
       360px;
-    padding-top: 1rem;
   }
 }
 
@@ -84,15 +66,11 @@
     background-color: $PLAYER-CONTROLS-BACKGROUND;
 
     &.-full {
-      position: fixed;
-      inset: 0;
-      z-index: 99;
-      height: 100%;
-      padding: rem(16);
+      @apply fixed inset-0 z-50 h-full p-4;
     }
   }
 
   &.-desktop {
-    padding: rem(16);
+    @apply p-4;
   }
 }

@@ -1,5 +1,3 @@
-import './style.scss';
-
 import classNames from 'classnames';
 import type {
   DetailedHTMLProps,

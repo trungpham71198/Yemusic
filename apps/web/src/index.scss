@@ -9,6 +9,16 @@
 @import 'assets/styles/_globals';
 @import 'assets/styles/_reset';
 @import 'assets/styles/_zIndex';
+@import './components/atoms/Button/style.scss';
+@import './components/atoms/Input/style.scss';
+@import './components/molecules/Modal/style.scss';
+@import './components/molecules/Nav/style.scss';
+@import './components/molecules/ProgressBar/style.scss';
+@import './components/organisms/Header/styles.scss';
+@import './components/organisms/PlayerControls/style.scss';
+@import './components/organisms/Search/style.scss';
+@import './components/organisms/Songs/style.scss';
+@import './components/templates/MainLayout/style.scss';
 
 *,
 *::before,

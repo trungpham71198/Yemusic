@@ -1,5 +1,3 @@
-import './style.scss';
-
 import classNames from 'classnames';
 import type { FC, ReactNode } from 'react';
 import type React from 'react';

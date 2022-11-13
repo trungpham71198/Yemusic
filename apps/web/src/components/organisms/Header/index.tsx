@@ -1,5 +1,3 @@
-import './styles.scss';
-
 import Button from '@components/atoms/Button';
 import Icon from '@components/atoms/Icon';
 import Search from '@feature/Search';

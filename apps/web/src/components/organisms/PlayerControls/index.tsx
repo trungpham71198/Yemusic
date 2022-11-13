@@ -1,5 +1,3 @@
-import './style.scss';
-
 import Icon from '@components/atoms/Icon';
 import ProgressBar from '@components/molecules/ProgressBar';
 import type { IPlayerControls } from '@core/domain/models/song';

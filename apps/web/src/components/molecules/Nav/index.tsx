@@ -1,5 +1,3 @@
-import './style.scss';
-
 import type { IconName } from '@components/atoms/Icon';
 import Icon from '@components/atoms/Icon';
 import classNames from 'classnames';

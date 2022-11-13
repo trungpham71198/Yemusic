@@ -149,7 +149,7 @@
 .o-song-card-list {
   $root: &;
 
-  @apply flex flex-col gap-4;
+  @apply flex flex-col gap-4 ml-2;
 
   &_title {
     @apply inline-block w-fit px-2;
