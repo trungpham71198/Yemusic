@@ -1,0 +1,8 @@
+{
+  "restartable": "rs",
+  "ignore": [".git", "node_modules/**/node_modules", "test/**/*.ts"],
+  "verbose": true,
+  "delay": 1000,
+  "watch": ["./index.ts", "./src/**", ".env"],
+  "ext": "ts,js,json,yaml,yml"
+}

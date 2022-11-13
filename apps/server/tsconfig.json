@@ -1,0 +1,30 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "target": "es6",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "allowJs": true,
+    "paths": {
+      "@app/*": ["src/application/*"],
+      "@datasource/*": ["src/datasource/*"],
+      "*": ["*"]
+    },
+    "typeRoots": ["*.d.ts", "types/*.d.ts"]
+    // "types": ["@types/jest"]
+  },
+  "include": ["src", "index.ts", "global.d.ts", "odmconfig.ts"],
+  "exclude": ["node_modules", "build.ts"],
+  "ts-node": {
+    "files": true
+  },
+  "files": ["global.d.ts"]
+}
