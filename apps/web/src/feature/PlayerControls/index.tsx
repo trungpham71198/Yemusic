@@ -14,7 +14,6 @@ export const PlayerControls: FC<IProps> = ({ device }) => {
     state => state.song
   );
 
-  const [isShuffle, setIsShuffle] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const songCurrent = playListSelector[current];
@@ -44,7 +43,6 @@ export const PlayerControls: FC<IProps> = ({ device }) => {
     <PlayerControlsCpn
       dataSource={songCurrent}
       isLoading={isLoading}
-      isShuffle={isShuffle}
       onShuffle={handleToggleSuffle}
       onNext={handleSkipNext}
       onPrevious={handleSkipPrevious}

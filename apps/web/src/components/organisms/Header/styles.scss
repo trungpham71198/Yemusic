@@ -4,7 +4,7 @@
   $btn-size: 32px;
 
   background-color: $BODY-BACKGROUND;
-  @apply flex justify-between items-center px-5 h-[4.5rem] shadow-lg;
+  @apply flex justify-between items-center px-5 h-[3.75rem] shadow-lg;
 
   & > a > h1 {
     width: #{$title-width};

@@ -9,6 +9,7 @@ import {
   useMemo,
   useRef,
 } from 'react';
+import { useAppSelector } from 'src/store/store';
 
 import { SongCard } from '.';
 
@@ -25,6 +26,8 @@ export const SongCardList: FC<SongCardListProps> = ({
   viewMode,
   title,
 }) => {
+  const { playList } = useAppSelector(state => state.song);
+
   const isPress = useRef<boolean>(false);
   const isClick = useRef<boolean>(false);
   const songCardListContentInnerRef = useRef<HTMLDivElement>(null);
@@ -121,7 +124,10 @@ export const SongCardList: FC<SongCardListProps> = ({
         </div>
       )}
       <div
-        className='o-song-card-list_content'
+        className={classNames(
+          'o-song-card-list_content',
+          !playList.length && 'has-song'
+        )}
         onMouseDownCapture={handleMouseDownCapture}
         onMouseUpCapture={handleMouseUpCaptureAndLeave}
         onMouseMoveCapture={handleMouseMoveCapture}

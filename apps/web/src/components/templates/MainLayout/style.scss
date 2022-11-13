@@ -11,7 +11,7 @@
     }
 
     #{$root}_navigation {
-      @apply h-14 w-14;
+      @apply h-14 min-h-[56px];
       background-color: $NAVIGATION-BACKGROUND;
     }
   }

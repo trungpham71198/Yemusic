@@ -190,6 +190,10 @@
       @apply h-[calc(100vh-245px)] overflow-auto;
     }
 
+    .has-song {
+      @apply h-[calc(100vh-185px)];
+    }
+
     &_info {
       &_title {
         h4 {

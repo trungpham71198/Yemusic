@@ -112,8 +112,12 @@
   }
 }
 
-@media screen and (min-width: 1024) {
+@media screen and (min-width: 1024px) {
   .o-search {
-    @apply w-[496px];
+    @apply w-[600px];
+
+    &_list {
+      @apply max-h-[400px];
+    }
   }
 }
