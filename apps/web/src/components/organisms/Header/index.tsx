@@ -39,12 +39,10 @@ const Header: FC = () => {
         <h1>Yemusic</h1>
       </Link>
 
-      {/* <div className='o-header-search'> */}
       <Search
         ref={inputRef}
         onCloseMobileSearch={() => setOpenMobileSearch(false)}
       />
-      {/* </div> */}
 
       <button className='o-header_btn' />
     </header>
